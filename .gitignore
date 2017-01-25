@@ -1,0 +1,7 @@
+*.pyc
+out/*
+export/*
+*.elf
+*.bin
+*.map
+cfg.tar.gz

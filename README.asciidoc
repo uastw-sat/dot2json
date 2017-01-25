@@ -1,0 +1,44 @@
+dot2json
+========
+:author: Florian Gerstmayer
+:doctype: article
+:email: florian.gerstmayer@technikum-wien.at
+:brand: UAS Technikum Wien
+:partner: 
+:icons:
+:toc:
+:footer:
+:data-uri:
+:date: 
+:revision: 
+:lang: en
+:encoding: utf-8
+
+This is a phyton script for the conversion of a *.dot file to a *.json file which is compatible with the javascript library sigma.js/linkurious.js to visualize call graphs of c-source code files.
+
+== Acknowledgment
+
+This work has been conducted in the context of the public funded R&D project Software Analysis Toolbox managed by the Vienna City Council MA23.
+
+== Introduction
+
+In the following few sections a brief description shall be given, why this script was developed and what it aims at.
+
+=== Why?
+
+In the context of a research project I am working on (cloud-ide), call graphs are generated using for instance graphviz.
+Unfortunately, this call graphs contain too much information for displaying them nicely in a browser window. Therefore, the idea was to use tools which for example support functionalities like "collapse/expand", interactiveness, drag & drop,... in contrast to png's, svg's, pdf's or other formats.
+
+Some existing dot-viewers are capablable of doing this. However, our project requires a standalone approach which can be integrated easily into the project as a submodule. External dependencies, such as other tools for visualization, are not desireable as the project is a browser based cloud.
+
+Therefore, a visualization using for example javascript was favourable due to its compliance with the existing workflow and tools in the project. In a quick research, no satisfying results came up. Because of that, we decided to implement our own "tool" for visualization, using a javascript visualization library called sigma.js.
+
+This however, required a parser from a dot file format to a specific json file format which is supported by sigma.js.
+
+=== What is supported?
+
+As of now, only the generated *.dot files from our project are supported. However, we intend to support general *.dot files also in a later stage of the script.
+
+
+
+

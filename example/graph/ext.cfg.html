@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<meta charset="utf-8"/>
+
+<!-- START IMPORTS -->
+<script src="../../dep/sigma.js"></script>
+<script src="../../dep/sigma.parsers.json.min.js"></script>
+<script src="../../dep/sigma.renderers.edgeLabels.min.js"></script>
+<script src="../../dep/sigma.plugins.dragNodes.min.js"></script>
+<script src="../../dep/jquery-1.7.1.min.js"></script>
+
+<link rel="stylesheet" href="../../dep/stylesheet.css">
+<!--  END IMPORTS -->
+
+<div id="split-container">
+    <div id="graph-container"></div>
+    <div id="docs-container"></div>
+    <div id="info-container">
+        <div id="foot">
+            <div class="doc-head" id="info_head">Information / Settings</div>
+            <div class="doc-body" id="info_body">
+                <b>Types:</b>
+                <ul>
+                    <li><font style="color:#3CB371">Normal</font></li>
+                    <li><font style="color:#1E90FF">Worst Stack</font></li>
+                    <li><font style="color:#CD5C5C">Worst Case Execution Path</font></li>
+                    <li><font style="color:#CFB53B">Worst Stack & Worst Execution</font></li>
+                </ul>
+                <b>Usage:</b>
+                <ul>
+                    <li>Click on node to enable information</li>
+                    <li>Hover over nodes to switch</li>
+                    <li>Click on "white" to disable information</li>
+                    <li>Click on information for more/less details</li>
+                </ul>
+                <b>Settings:</b><br>
+                Edge-Label-Size:
+                <button type="button" id="EdgeLableSizePlus" class="btn">+</button>
+                <button type="button" id="EdgeLableSizeMinus" class="btn">-</button>
+                <button type="button" id="btnToggleEdge" class="btn">Show/Hide</button><br>
+                Node-Label-Size:
+                <button type="button" id="NodeLableSizePlus" class="btn">+</button>
+                <button type="button" id="NodeLableSizeMinus" class="btn">-</button>
+                <button type="button" id="btnToggleNode" class="btn">Show/Hide</button><br>
+                Edge-Size:
+                <button type="button" id="EdgeSizePlus" class="btn">+</button>
+                <button type="button" id="EdgeSizeMinus" class="btn">-</button><br>
+                Node-Size:
+                <button type="button" id="NodeSizePlus" class="btn">+</button>
+                <button type="button" id="NodeSizeMinus" class="btn">-</button><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    
+    
+    docsClosePadding  = 8,
+    desiredDocsHeight = 300;
+    var doc = document.getElementById('docs-container');
+    var graph = document.getElementById('graph-container');
+    var EdgeLabels = true;
+    var NodeLabels = true;
+    var EdgeLabelSize = 12;
+    var NodeLabelSize = 12;
+    var NodeSize = 7;
+    var EdgeSize = 2;
+    var showsdoc = false;
+    var toggle = false;
+    var text = "";
+    var add = "";
+    var s = new sigma({
+        
+        renderer: {
+            container: graph,
+            type: 'canvas'
+        },
+        settings: {
+            doubleClickEnabled: false,
+            enableEdgeHovering: false,
+            enableHovering:true,
+            edgeHoverColor: 'edge',
+            defaultEdgeHoverColor: '#000',
+            edgeLabelSize: 'proportional',
+            edgeLabelAlignment: 'auto',
+            minArrowSize: 5,
+            minEdgeSize: EdgeSize,
+            maxEdgeSize: EdgeSize,
+            minNodeSize: NodeSize,
+            maxNodeSize: NodeSize,
+            drawLabels: NodeLabels,
+            defaultLabelSize: NodeLabelSize,
+            defaultEdgeLabelSize: EdgeLabelSize,
+            drawEdgeLabels : EdgeLabels
+        }
+    });
+
+
+    
+    var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
+    
+    dragListener.bind('startdrag', function(event) {});
+    dragListener.bind('drag', function(event) {});
+    dragListener.bind('drop', function(event) {});
+    dragListener.bind('dragend', function(event) {});
+
+    s.bind('clickNode', function(e) {
+        showsdoc= true;
+        showDoc(showsdoc,e.data.node)
+    });
+    
+    s.bind('clickStage', function(e) {
+        showsdoc = false;
+        showDoc(showsdoc,"")
+    });
+    
+    s.bind('hovers', function(e) {
+        if (showsdoc == true && e.data.enter.nodes.length > 0) {
+          showDoc(showsdoc,e.data.enter.nodes[0])
+        }
+    });
+    function showDoc (show, node) {
+        var doc_head = document.getElementById("doc-head");
+        var doc_body = document.getElementById("doc-body")
+        if (show == true) {
+            if (doc_head == null){
+                var doc_head = document.createElement("div");
+                doc_head.id="doc-head";
+                doc_head.className="doc-head";
+                doc.appendChild(doc_head);
+            }
+            if (doc_body == null){
+                var doc_body = document.createElement("div");
+                doc_body.id="doc-body";
+                doc_body.className="doc-body";
+                doc.appendChild(doc_body);
+            }
+
+            doc_head.innerHTML = node.label;
+            
+            text =  '    <table>' +
+                    '      <tr><th>Exec. Time: </th> <td>' + node.ET + '</td></tr>' +
+                    '      <tr><th>Stack Usage:</th> <td>' + node.ST + '</td></tr>' +
+                    '    </table>';
+                    
+            add =   '    <table>' +
+                    '      <tr><th>Src. Code:</th> <td>' +
+                    '    </table>' + 
+                            node.Code + node.Src +
+                    '    <table>' +
+                    '      <tr><th><br>Assembly:</th></tr>' +
+                    '    </table>' +
+                            node.Detail;
+                    
+            if (toggle == true) {
+                doc_body.innerHTML = text + add;
+            }
+            else {
+                 doc_body.innerHTML = text;
+            }
+        }
+        else {
+            if (doc_head != null) {
+                doc.removeChild(doc_head);
+            }
+            if (doc_body != null){
+                doc.removeChild(doc_body);
+            }
+            text = "";
+            add = "";
+        }
+    }
+    
+    
+    $("#docs-container").on('click',".doc-head",function(){
+        doc_body = document.getElementById('doc-body');
+        toggle = !toggle;
+        if (toggle == true) {
+            doc_body.innerHTML = text +add;
+        }
+        else {
+            doc_body.innerHTML = text;
+        }
+    });
+    
+    
+    document.getElementById("info_head").addEventListener('click',function(){
+        info_body = document.getElementById('info_body');
+        if (info_body.style.display == "none") {
+            info_body.style.display = "";
+        }
+        else {
+            info_body.style.display = "none";
+        }
+    });
+    
+    document.getElementById("EdgeSizePlus").addEventListener("click", function(){
+        EdgeSize = EdgeSize +0.5;
+        s.settings('minEdgeSize',EdgeSize);
+        s.settings('maxEdgeSize',EdgeSize);
+        s.refresh();
+    });
+
+    
+    document.getElementById("EdgeSizeMinus").addEventListener("click", function(){
+        if (EdgeSize > 0) {
+            EdgeSize = EdgeSize - 0.5;
+        }
+        s.settings('minEdgeSize',EdgeSize);
+        s.settings('maxEdgeSize',EdgeSize);
+        s.refresh();
+    });
+    
+    document.getElementById("NodeSizePlus").addEventListener("click", function(){
+        NodeSize = NodeSize +1;
+        s.settings('minNodeSize',NodeSize);
+        s.settings('maxNodeSize',NodeSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("NodeSizeMinus").addEventListener("click", function(){
+        if (NodeSize > 0) {
+            NodeSize = NodeSize - 1;
+        }
+        s.settings('minNodeSize',NodeSize);
+        s.settings('maxNodeSize',NodeSize);
+        s.refresh();
+    });
+
+
+
+    document.getElementById("NodeLableSizePlus").addEventListener("click", function(){
+        NodeLabelSize = NodeLabelSize +1;
+        s.settings('defaultLabelSize',NodeLabelSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("NodeLableSizeMinus").addEventListener("click", function(){
+        if (NodeLabelSize > 0) {
+            NodeLabelSize = NodeLabelSize - 1;
+        }
+        s.settings('defaultLabelSize',NodeLabelSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("btnToggleNode").addEventListener("click", function(){
+        NodeLabels = !NodeLabels;
+        s.settings('drawLabels',NodeLabels);
+        s.refresh();
+    });
+    
+    
+    document.getElementById("EdgeLableSizePlus").addEventListener("click", function(){
+        EdgeLabelSize = EdgeLabelSize +1;
+        s.settings('defaultEdgeLabelSize',EdgeLabelSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("EdgeLableSizeMinus").addEventListener("click", function(){
+        if (EdgeLabelSize > 0) {
+            EdgeLabelSize = EdgeLabelSize - 1;
+        }
+        s.settings('defaultEdgeLabelSize',EdgeLabelSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("btnToggleEdge").addEventListener("click", function(){
+        EdgeLabels = !EdgeLabels;
+        s.settings('drawEdgeLabels',EdgeLabels);
+        s.refresh();
+    });
+    
+    //sigma.canvas.edges.autoCurve(s);
+    sigma.parsers.json('main.json', s, function(){s.refresh()})
+</script>

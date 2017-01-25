@@ -1,0 +1,67 @@
+.btn {
+          background: #3498db;
+          background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+          background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+          background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+          background-image: -o-linear-gradient(top, #3498db, #2980b9);
+          background-image: linear-gradient(to bottom, #3498db, #2980b9);
+          -webkit-border-radius: 28;
+          -moz-border-radius: 28;
+          border-radius: 28px;
+          font-family: Arial;
+          color: #ffffff;
+          font-size: 12px;
+          padding: 2px 2px 2px 2px;
+          border: solid #1f628d 1px;
+          text-decoration: none;
+        }
+
+        .btn:hover {
+          text-decoration: none;
+        }
+        
+        #graph-container {
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          position: absolute;
+        }
+        
+        #info-container {
+          position:relative;
+          float: right;
+        }
+        
+        #foot {
+          text-align:left;
+          font-size: 100%;
+          background-color: rgb(249, 247, 237);
+          box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+          border-radius: 6px;
+        }
+        
+        #docs-container {
+          display: block;
+          position: absolute;
+          background-color: rgb(249, 247, 237);
+          box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+          border-radius: 6px;
+        }
+        
+        .doc-head {
+          font-variant: small-caps;
+          font-size: 120%;
+          color: #437356;
+          border-bottom: 1px solid #aac789;
+          padding: 10px;
+        }
+        
+        .doc-body{
+          padding: 10px;
+        }
+        
+        .doc-body th {
+          color: #999;
+          text-align: left;
+        }

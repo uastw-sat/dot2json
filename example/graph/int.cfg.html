@@ -1,0 +1,1933 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<meta charset="utf-8"/>
+
+<!-- START IMPORTS -->
+<script src="../../dep/sigma.js"></script>
+<script src="../../dep/sigma.parsers.json.min.js"></script>
+<script src="../../dep/sigma.renderers.edgeLabels.min.js"></script>
+<script src="../../dep/sigma.plugins.dragNodes.min.js"></script>
+<script src="../../dep/jquery-1.7.1.min.js"></script>
+
+<link rel="stylesheet" href="../../dep/stylesheet.css">
+<!--  END IMPORTS -->
+
+<div id="split-container">
+    <div id="graph-container"></div>
+    <div id="docs-container"></div>
+    <div id="info-container">
+        <div id="foot">
+            <div class="doc-head" id="info_head">Information / Settings</div>
+            <div class="doc-body" id="info_body">
+                <b>Types:</b>
+                <ul>
+                    <li><font style="color:#3CB371">Normal</font></li>
+                    <li><font style="color:#1E90FF">Worst Stack</font></li>
+                    <li><font style="color:#CD5C5C">Worst Case Execution Path</font></li>
+                    <li><font style="color:#CFB53B">Worst Stack & Worst Execution</font></li>
+                </ul>
+                <b>Usage:</b>
+                <ul>
+                    <li>Click on node to enable information</li>
+                    <li>Hover over nodes to switch</li>
+                    <li>Click on "white" to disable information</li>
+                    <li>Click on information for more/less details</li>
+                </ul>
+                <b>Settings:</b><br>
+                Edge-Label-Size:
+                <button type="button" id="EdgeLableSizePlus" class="btn">+</button>
+                <button type="button" id="EdgeLableSizeMinus" class="btn">-</button>
+                <button type="button" id="btnToggleEdge" class="btn">Show/Hide</button><br>
+                Node-Label-Size:
+                <button type="button" id="NodeLableSizePlus" class="btn">+</button>
+                <button type="button" id="NodeLableSizeMinus" class="btn">-</button>
+                <button type="button" id="btnToggleNode" class="btn">Show/Hide</button><br>
+                Edge-Size:
+                <button type="button" id="EdgeSizePlus" class="btn">+</button>
+                <button type="button" id="EdgeSizeMinus" class="btn">-</button><br>
+                Node-Size:
+                <button type="button" id="NodeSizePlus" class="btn">+</button>
+                <button type="button" id="NodeSizeMinus" class="btn">-</button><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    	var g = {
+		nodes: [],
+		edges: []
+	};
+
+	g.nodes.push({
+		Src:"",
+		x:-7665,
+		Code:"",
+		color:"rgb(60,179,113)",
+		Detail:"",
+		ST:"",
+		WST:"False",
+		WET:"False",
+		y:-4770.0,
+		ET:"",
+		label:"EXIT",
+		id:"Node60"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-8870,
+		Code:"src/main.c:main:178",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000758:</i>  b.n 080005ec",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-5070.0,
+		ET:"2 cycles ",
+		label:"BB 28 (08000758)",
+		id:"Node28"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-7665,
+		Code:"src/main.c:main:176,180,181",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x0800075a:</i>  nop<br><i>0x0800075c:</i>  movs r3, #0<br><i>0x0800075e:</i>  movs r0, r3<br><i>0x08000760:</i>  adds r7, #156<br><i>0x08000762:</i>  movs sp, r7<br><i>0x08000764:</i>  pop {r4, r7, pc}",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-5070.0,
+		ET:"9 cycles ",
+		label:"BB 29 (0800075a)",
+		id:"Node29"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-7665,
+		Code:"src/main.c:main:168,174",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000744:</i>  mov.w r3, #33024<br><i>0x08000748:</i>  movt r3, #18434<br><i>0x0800074c:</i>  movs r2, #0<br><i>0x0800074e:</i>  str r2, [r3, #0x7ffc00000000]<br><i>0x08000750:</i>  ldrb.w r3, [r7, #0x85]<br><i>0x08000754:</i>  cmp r3, #1<br><i>0x08000756:</i>  beq.n 0800075a",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-5370.0,
+		ET:"20 cycles ",
+		label:"BB 24 (08000744)",
+		id:"Node24"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-7860,
+		Code:"src/main.c:main:121",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000654:</i>  ldrh.w r3, [r7, #0x86]<br><i>0x08000658:</i>  adds r3, #1<br><i>0x0800065a:</i>  strh.w r3, [r7, #0x86]",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-8469.0,
+		ET:"5 cycles",
+		label:"BB 25 (08000654)",
+		id:"Node25"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-3080,
+		Code:"src/main.c:main:148,149",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080006c6:</i>  movs r3, #0<br><i>0x080006c8:</i>  strh.w r3, [r7, #0x96]<br><i>0x080006cc:</i>  movs r3, #0<br><i>0x080006ce:</i>  strh.w r3, [r7, #0x86]<br><i>0x080006d2:</i>  b.n 080006f8",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-8169.0,
+		ET:"12 cycles ",
+		label:"BB 26 (080006c6)",
+		id:"Node26"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-1365,
+		Code:"src/main.c:main:142",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x0800068c:</i>  ldrh.w r4, [r7, #0x86]<br><i>0x08000690:</i>  bl 80003d0",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-8169.0,
+		ET:"640 cycles ",
+		label:"BB 27 (0800068c)",
+		id:"Node27"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-5355,
+		Code:"src/main.c:main:164,166",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x0800072e:</i>  mov.w r3, #33024<br><i>0x08000732:</i>  movt r3, #18434<br><i>0x08000736:</i>  movs r2, #2<br><i>0x08000738:</i>  str r2, [r3, #0x7ffc00000000]<br><i>0x0800073a:</i>  ldrh.w r3, [r7, #0x96]<br><i>0x0800073e:</i>  movs r0, r3<br><i>0x08000740:</i>  bl 8000554",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-7170.0,
+		ET:"20 cycles ",
+		label:"BB 20 (0800072e)",
+		id:"Node20"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6385,
+		Code:"src/main.c:main:125",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000636:</i>  ldrd r3, r4, [r7, #0x88]<br><i>0x0800063a:</i>  adds r3, #2<br><i>0x0800063c:</i>  adc.w r4, r4, #0<br><i>0x08000640:</i>  strd r3, r4, [r7, #0x88]<br><i>0x08000644:</i>  b.n 08000654",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-8769.0,
+		ET:"5 cycles",
+		label:"BB 21 (08000636)",
+		id:"Node21"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-7860,
+		Code:"src/main.c:main:129",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000646:</i>  ldrh.w r2, [r7, #0x96]<br><i>0x0800064a:</i>  ldrh.w r3, [r7, #0x86]<br><i>0x0800064e:</i>  add r3, r2<br><i>0x08000650:</i>  strh.w r3, [r7, #0x96]",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-8769.0,
+		ET:"6 cycles",
+		label:"BB 22 (08000646)",
+		id:"Node22"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-2580,
+		Code:"src/main.c:main:140",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080006be:</i>  ldrh.w r3, [r7, #0x86]<br><i>0x080006c2:</i>  cmp r3, #63<br><i>0x080006c4:</i>  bls.n 0800068c",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-8469.0,
+		ET:"780 cycles ",
+		label:"BB 23 (080006be)",
+		id:"Node23"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-5355,
+		Code:"src/main.c:processData:87",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000576:</i>  nop",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"False",
+		y:-6570.0,
+		ET:"3 cycles",
+		label:"BB 48 (08000576)",
+		id:"Node48"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6145,
+		Code:"src/main.c:processData:89",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x0800056a:</i>  ldrh r3, [r7, #0x7ffc00000006]<br><i>0x0800056c:</i>  subs r2, r3, #1<br><i>0x0800056e:</i>  strh r2, [r7, #0x7ffc00000006]<br><i>0x08000570:</i>  cmp r3, #0<br><i>0x08000572:</i>  bne.n 08000568",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-6270.0,
+		ET:"65536 cycles ",
+		label:"BB 49 (0800056a)",
+		id:"Node49"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-5355,
+		Code:"src/main.c:processData:84,85",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000554:</i>  push {r7}<br><i>0x08000556:</i>  sub sp, #12<br><i>0x08000558:</i>  add r7, sp, #0<br><i>0x0800055a:</i>  movs r3, r0<br><i>0x0800055c:</i>  strh r3, [r7, #0x7ffc00000006]<br><i>0x0800055e:</i>  ldrh r3, [r7, #0x7ffc00000006]<br><i>0x08000560:</i>  cmp.w r3,#4096<br><i>0x08000564:</i>  bcs.n 08000576",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-6870.0,
+		ET:"22 cycles ",
+		label:"BB 46 (08000554)",
+		id:"Node46"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6145,
+		Code:"src/main.c:processData:89",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000566:</i>  b.n 0800056a",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-6570.0,
+		ET:"4 cycles ",
+		label:"BB 47 (08000566)",
+		id:"Node47"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-2580,
+		Code:"src/adc.c:ADC_Start:46,47,48",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000380:</i>  push {r7}<br><i>0x08000382:</i>  add r7, sp, #0<br><i>0x08000384:</i>  mov.w r2, #1073758208<br><i>0x08000388:</i>  mov.w r3, #1073758208<br><i>0x0800038c:</i>  ldr.w r3, [r3, #0x204]<br><i>0x08000390:</i>  orr.w r3, r3, #512<br><i>0x08000394:</i>  str.w r3, [r2, #0x204]<br><i>0x08000398:</i>  nop<br><i>0x0800039a:</i>  movs sp, r7<br><i>0x0800039c:</i>  pop {r7}<br><i>0x0800039e:</i>  bx lr",
+		ST:"172 bytes",
+		WST:"False",
+		WET:"True",
+		y:-9069.0,
+		ET:"1792 cycles ",
+		label:"BB 44 (08000380)",
+		id:"Node44"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-4785,
+		Code:"src/adc.c:ADC_Stop:52,54",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x080003a0:</i>  push {r7}<br><i>0x080003a2:</i>  add r7, sp, #0<br><i>0x080003a4:</i>  nop<br><i>0x080003a6:</i>  movs sp, r7<br><i>0x080003a8:</i>  pop {r7}<br><i>0x080003aa:</i>  bx lr",
+		ST:"172 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9069.0,
+		ET:"8 cycles",
+		label:"BB 45 (080003a0)",
+		id:"Node45"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-3880,
+		Code:"src/adc.c:ADC_Read:59,60,62,64,65",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x080003ac:</i>  push {r7}<br><i>0x080003ae:</i>  sub sp, #12<br><i>0x080003b0:</i>  add r7, sp, #0<br><i>0x080003b2:</i>  movs r3, #0<br><i>0x080003b4:</i>  strh r3, [r7, #0x7ffc00000006]<br><i>0x080003b6:</i>  mov.w r3, #17408<br><i>0x080003ba:</i>  movt r3, #16384<br><i>0x080003be:</i>  ldr.w r3, [r3, #0x300]<br><i>0x080003c2:</i>  strh r3, [r7, #0x7ffc00000006]<br><i>0x080003c4:</i>  ldrh r3, [r7, #0x7ffc00000006]<br><i>0x080003c6:</i>  movs r0, r3<br><i>0x080003c8:</i>  adds r7, #12<br><i>0x080003ca:</i>  movs sp, r7<br><i>0x080003cc:</i>  pop {r7}<br><i>0x080003ce:</i>  bx lr",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9669.0,
+		ET:"17 cycles",
+		label:"BB 42 (080003ac)",
+		id:"Node42"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-4785,
+		Code:"src/adc.c:ADC_Read:59,60,62,64,65",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x080003ac:</i>  push {r7}<br><i>0x080003ae:</i>  sub sp, #12<br><i>0x080003b0:</i>  add r7, sp, #0<br><i>0x080003b2:</i>  movs r3, #0<br><i>0x080003b4:</i>  strh r3, [r7, #0x7ffc00000006]<br><i>0x080003b6:</i>  mov.w r3, #17408<br><i>0x080003ba:</i>  movt r3, #16384<br><i>0x080003be:</i>  ldr.w r3, [r3, #0x300]<br><i>0x080003c2:</i>  strh r3, [r7, #0x7ffc00000006]<br><i>0x080003c4:</i>  ldrh r3, [r7, #0x7ffc00000006]<br><i>0x080003c6:</i>  movs r0, r3<br><i>0x080003c8:</i>  adds r7, #12<br><i>0x080003ca:</i>  movs sp, r7<br><i>0x080003cc:</i>  pop {r7}<br><i>0x080003ce:</i>  bx lr",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9669.0,
+		ET:"17 cycles",
+		label:"BB 43 (080003ac)",
+		id:"Node43"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-5230,
+		Code:"src/main.c:fib:72,73,74,70",
+		color:"rgb(207,181,59)",
+		Detail:"<br><i>0x08000518:</i>  ldr r3, [r7, #0x7ffc00000010]<br><i>0x0800051a:</i>  str r3, [r7, #0x7ffc00000008]<br><i>0x0800051c:</i>  ldr r2, [r7, #0x7ffc00000010]<br><i>0x0800051e:</i>  ldr r3, [r7, #0x7ffc0000000c]<br><i>0x08000520:</i>  add r3, r2<br><i>0x08000522:</i>  str r3, [r7, #0x7ffc00000010]<br><i>0x08000524:</i>  ldr r3, [r7, #0x7ffc00000008]<br><i>0x08000526:</i>  str r3, [r7, #0x7ffc0000000c]<br><i>0x08000528:</i>  ldr r3, [r7, #0x7ffc00000014]<br><i>0x0800052a:</i>  adds r3, #1<br><i>0x0800052c:</i>  str r3, [r7, #0x7ffc00000014]",
+		ST:"200 bytes ",
+		WST:"True",
+		WET:"True",
+		y:-10869.0,
+		ET:"532 cycles ",
+		label:"BB 40 (08000518)",
+		id:"Node40"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6785,
+		Code:"src/adc.c:ADC_Stop:52,54",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x080003a0:</i>  push {r7}<br><i>0x080003a2:</i>  add r7, sp, #0<br><i>0x080003a4:</i>  nop<br><i>0x080003a6:</i>  movs sp, r7<br><i>0x080003a8:</i>  pop {r7}<br><i>0x080003aa:</i>  bx lr",
+		ST:"172 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9969.0,
+		ET:"8 cycles",
+		label:"BB 41 (080003a0)",
+		id:"Node41"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6785,
+		Code:"src/main.c:fib:76,77",
+		color:"rgb(207,181,59)",
+		Detail:"<br><i>0x08000540:</i>  ldr r3, [r7, #0x7ffc00000010]<br><i>0x08000542:</i>  asr.w r4, r3, #31<br><i>0x08000546:</i>  movs r0, r3<br><i>0x08000548:</i>  movs r1, r4<br><i>0x0800054a:</i>  adds r7, #24<br><i>0x0800054c:</i>  movs sp, r7<br><i>0x0800054e:</i>  pop {r4, r7}<br><i>0x08000550:</i>  bx lr",
+		ST:"200 bytes ",
+		WST:"True",
+		WET:"True",
+		y:-10869.0,
+		ET:"18 cycles ",
+		label:"BB 39 (08000540)",
+		id:"Node39"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-4785,
+		Code:"src/main.c:main:134",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000668:</i>  ldrd r3, r4, [r7, #0x88]<br><i>0x0800066c:</i>  movw r1, #6765<br><i>0x08000670:</i>  mov.w r2, #0<br><i>0x08000674:</i>  cmp r4, r2<br><i>0x08000676:</i>  it eq<br><i>0x08000678:</i>  cmpeq r3, r1<br><i>0x0800067a:</i>  bne.n 08000712",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-10269.0,
+		ET:"20 cycles ",
+		label:"BB 9 (08000668)",
+		id:"Node9"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6785,
+		Code:"src/main.c:main:119,120",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000610:</i>  movs r3, #0<br><i>0x08000612:</i>  strh.w r3, [r7, #0x96]<br><i>0x08000616:</i>  bl 80003a0",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-10269.0,
+		ET:"3 cycles",
+		label:"BB 8 (08000610)",
+		id:"Node8"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-5230,
+		Code:"src/main.c:fib:70",
+		color:"rgb(207,181,59)",
+		Detail:"<br><i>0x0800052e:</i>  ldr r3, [r7, #0x7ffc00000014]<br><i>0x08000530:</i>  asr.w r4, r3, #31<br><i>0x08000534:</i>  ldrd r1, r2, [r7]<br><i>0x08000538:</i>  cmp r2, r4<br><i>0x0800053a:</i>  it eq<br><i>0x0800053c:</i>  cmpeq r1, r3<br><i>0x0800053e:</i>  bcs.n 08000518",
+		ST:"200 bytes ",
+		WST:"True",
+		WET:"True",
+		y:-11169.0,
+		ET:"400 cycles ",
+		label:"BB 38 (0800052e)",
+		id:"Node38"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-10455,
+		Code:"src/main.c:main:99,101,102,103,106",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000580:</i>  push {r4, r7, lr}<br><i>0x08000582:</i>  sub sp, #156<br><i>0x08000584:</i>  add r7, sp, #0<br><i>0x08000586:</i>  movs r3, #0<br><i>0x08000588:</i>  strh.w r3, [r7, #0x96]<br><i>0x0800058c:</i>  mov.w r3, #0<br><i>0x08000590:</i>  mov.w r4, #0<br><i>0x08000594:</i>  strd r3, r4, [r7, #0x88]<br><i>0x08000598:</i>  movs r3, #0<br><i>0x0800059a:</i>  strh.w r3, [r7, #0x86]<br><i>0x0800059e:</i>  movs r3, #0<br><i>0x080005a0:</i>  strb.w r3, [r7, #0x85]<br><i>0x080005a4:</i>  b.n 080005c2",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-13869.0,
+		ET:"16 cycles ",
+		label:"BB 1 (08000580)",
+		id:"Node1"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-10455,
+		Code:"",
+		color:"rgb(60,179,113)",
+		Detail:"",
+		ST:"",
+		WST:"False",
+		WET:"False",
+		y:-14169.0,
+		ET:"",
+		label:"ENTRY",
+		id:"Node0"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-8865,
+		Code:"src/main.c:main:108,110",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080005ca:</i>  mov.w r3, #33024<br><i>0x080005ce:</i>  movt r3, #18434<br><i>0x080005d2:</i>  mov.w r2, #33024<br><i>0x080005d6:</i>  movt r2, #18434<br><i>0x080005da:</i>  ldr r2, [r2, #0x7ffc00000010]<br><i>0x080005dc:</i>  orr.w r2, r2, #32768<br><i>0x080005e0:</i>  str r2, [r3, #0x7ffc00000010]<br><i>0x080005e2:</i>  bl 80002e8",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-13269.0,
+		ET:"9 cycles ",
+		label:"BB 3 (080005ca)",
+		id:"Node3"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-10455,
+		Code:"src/main.c:main:106",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080005c2:</i>  ldrb.w r3, [r7, #0x85]<br><i>0x080005c6:</i>  cmp r3, #63<br><i>0x080005c8:</i>  bls.n 080005a6",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-13569.0,
+		ET:"390 cycles ",
+		label:"BB 2 (080005c2)",
+		id:"Node2"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-8865,
+		Code:"src/main.c:main:112",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080005e6:</i>  movs r3, #0<br><i>0x080005e8:</i>  strb.w r3, [r7, #0x85]",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-12069.0,
+		ET:"5 cycles ",
+		label:"BB 5 (080005e6)",
+		id:"Node5"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-10455,
+		Code:"src/main.c:main:106",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080005a6:</i>  ldrb.w r3, [r7, #0x85]<br><i>0x080005aa:</i>  lsls r3, r3, #1<br><i>0x080005ac:</i>  add.w r2, r7, #152<br><i>0x080005b0:</i>  add r3, r2<br><i>0x080005b2:</i>  movs r2, #0<br><i>0x080005b4:</i>  strh r2, [r3, #-0x94]<br><i>0x080005b8:</i>  ldrb.w r3, [r7, #0x85]<br><i>0x080005bc:</i>  adds r3, #1<br><i>0x080005be:</i>  strb.w r3, [r7, #0x85]",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-13269.0,
+		ET:"768 cycles ",
+		label:"BB 4 (080005a6)",
+		id:"Node4"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6785,
+		Code:"src/main.c:main:115,117",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080005f8:</i>  strd r0, r1, [r7, #0x88]<br><i>0x080005fc:</i>  ldrd r3, r4, [r7, #0x88]<br><i>0x08000600:</i>  movw r1, #299<br><i>0x08000604:</i>  mov.w r2, #0<br><i>0x08000608:</i>  cmp r2, r4<br><i>0x0800060a:</i>  it eq<br><i>0x0800060c:</i>  cmpeq r1, r3<br><i>0x0800060e:</i>  bcc.n 08000668",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-10569.0,
+		ET:"22 cycles ",
+		label:"BB 7 (080005f8)",
+		id:"Node7"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-8865,
+		Code:"src/main.c:main:115",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080005ec:</i>  mov.w r0, #20<br><i>0x080005f0:</i>  mov.w r1, #0<br><i>0x080005f4:</i>  bl 8000500",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-11769.0,
+		ET:"12 cycles ",
+		label:"BB 6 (080005ec)",
+		id:"Node6"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-3880,
+		Code:"src/main.c:main:136",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x0800067c:</i>  bl 80003ac",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-9969.0,
+		ET:"4 cycles ",
+		label:"BB 11 (0800067c)",
+		id:"Node11"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6785,
+		Code:"src/main.c:main:121",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x0800061a:</i>  movs r3, #0<br><i>0x0800061c:</i>  strh.w r3, [r7, #0x86]<br><i>0x08000620:</i>  b.n 0800065e",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9669.0,
+		ET:"5 cycles",
+		label:"BB 10 (0800061a)",
+		id:"Node10"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6785,
+		Code:"src/main.c:main:121",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x0800065e:</i>  ldrh.w r3, [r7, #0x86]<br><i>0x08000662:</i>  cmp r3, #64<br><i>0x08000664:</i>  bls.n 08000622",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9369.0,
+		ET:"5 cycles",
+		label:"BB 13 (0800065e)",
+		id:"Node13"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-4785,
+		Code:"src/main.c:main:158",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000712:</i>  bl 80003ac",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9969.0,
+		ET:"3 cycles",
+		label:"BB 12 (08000712)",
+		id:"Node12"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-4785,
+		Code:"src/main.c:main:158,159",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000716:</i>  movs r3, r0<br><i>0x08000718:</i>  uxth r3, r3<br><i>0x0800071a:</i>  mov.w r4, #0<br><i>0x0800071e:</i>  strd r3, r4, [r7, #0x88]<br><i>0x08000722:</i>  bl 80003a0",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9369.0,
+		ET:"7 cycles",
+		label:"BB 15 (08000716)",
+		id:"Node15"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-3880,
+		Code:"src/main.c:main:137",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000680:</i>  bl 8000380",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-9369.0,
+		ET:"8 cycles ",
+		label:"BB 14 (08000680)",
+		id:"Node14"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6785,
+		Code:"src/main.c:main:123",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000622:</i>  ldrh.w r3, [r7, #0x96]<br><i>0x08000626:</i>  mov.w r4, #0<br><i>0x0800062a:</i>  ldrd r1, r2, [r7, #0x88]<br><i>0x0800062e:</i>  cmp r2, r4<br><i>0x08000630:</i>  it eq<br><i>0x08000632:</i>  cmpeq r1, r3<br><i>0x08000634:</i>  bcs.n 08000646",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9069.0,
+		ET:"9 cycles",
+		label:"BB 17 (08000622)",
+		id:"Node17"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-5885,
+		Code:"src/main.c:main:121",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000666:</i>  b.n 0800072e",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-9069.0,
+		ET:"1 cycles",
+		label:"BB 16 (08000666)",
+		id:"Node16"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-4785,
+		Code:"src/main.c:main:160",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x08000726:</i>  ldr.w r3, [r7, #0x88]<br><i>0x0800072a:</i>  strh.w r3, [r7, #0x96]",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"False",
+		y:-8769.0,
+		ET:"4 cycles",
+		label:"BB 19 (08000726)",
+		id:"Node19"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-2580,
+		Code:"src/main.c:main:139,140",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000684:</i>  movs r3, #0<br><i>0x08000686:</i>  strh.w r3, [r7, #0x86]<br><i>0x0800068a:</i>  b.n 080006be",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-8769.0,
+		ET:"12 cycles ",
+		label:"BB 18 (08000684)",
+		id:"Node18"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-1365,
+		Code:"src/main.c:main:142,143,144,145",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000694:</i>  movs r3, r0<br><i>0x08000696:</i>  movs r2, r3<br><i>0x08000698:</i>  lsls r3, r4, #1<br><i>0x0800069a:</i>  add.w r1, r7, #152<br><i>0x0800069e:</i>  add r3, r1<br><i>0x080006a0:</i>  strh r2, [r3, #-0x94]<br><i>0x080006a4:</i>  ldrh.w r3, [r7, #0x86]<br><i>0x080006a8:</i>  adds r3, #1<br><i>0x080006aa:</i>  strh.w r3, [r7, #0x86]<br><i>0x080006ae:</i>  movw r3, #4<br><i>0x080006b2:</i>  movt r3, #8192<br><i>0x080006b6:</i>  movs r2, #0<br><i>0x080006b8:</i>  strb r2, [r3, #0]<br><i>0x080006ba:</i>  bl 8000380",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-6369.0,
+		ET:"2176 cycles ",
+		label:"BB 31 (08000694)",
+		id:"Node31"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-3080,
+		Code:"src/main.c:main:149",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080006f8:</i>  ldrh.w r3, [r7, #0x86]<br><i>0x080006fc:</i>  cmp r3, #63<br><i>0x080006fe:</i>  bls.n 080006d4",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-7869.0,
+		ET:"780 cycles ",
+		label:"BB 30 (080006f8)",
+		id:"Node30"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-5955,
+		Code:"src/main.c:fib:67,69,70",
+		color:"rgb(207,181,59)",
+		Detail:"<br><i>0x08000500:</i>  push {r4, r7}<br><i>0x08000502:</i>  sub sp, #24<br><i>0x08000504:</i>  add r7, sp, #0<br><i>0x08000506:</i>  strd r0, r1, [r7]<br><i>0x0800050a:</i>  movs r3, #1<br><i>0x0800050c:</i>  str r3, [r7, #0x7ffc00000010]<br><i>0x0800050e:</i>  movs r3, #0<br><i>0x08000510:</i>  str r3, [r7, #0x7ffc0000000c]<br><i>0x08000512:</i>  movs r3, #2<br><i>0x08000514:</i>  str r3, [r7, #0x7ffc00000014]<br><i>0x08000516:</i>  b.n 0800052e",
+		ST:"200 bytes ",
+		WST:"True",
+		WET:"True",
+		y:-11469.0,
+		ET:"28 cycles ",
+		label:"BB 37 (08000500)",
+		id:"Node37"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-8865,
+		Code:"./sys/core_cm4.h:NVIC_EnableIRQ:1600,1601,1602",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080002b4:</i>  push {r7}<br><i>0x080002b6:</i>  sub sp, #12<br><i>0x080002b8:</i>  add r7, sp, #0<br><i>0x080002ba:</i>  movs r3, r0<br><i>0x080002bc:</i>  strb r3, [r7, #7]<br><i>0x080002be:</i>  mov.w r3, #57600<br><i>0x080002c2:</i>  movt r3, #57344<br><i>0x080002c6:</i>  ldrsb r2, [r7, #0x7]<br><i>0x080002ca:</i>  lsrs r2, r2, #5<br><i>0x080002cc:</i>  ldrb r1, [r7, #7]<br><i>0x080002ce:</i>  and.w r1, r1, #31<br><i>0x080002d2:</i>  movs r0, #1<br><i>0x080002d4:</i>  lsl.w r1, r0, r1<br><i>0x080002d8:</i>  str.w r1, [r3, r2, lsl #2]<br><i>0x080002dc:</i>  nop<br><i>0x080002de:</i>  adds r7, #12<br><i>0x080002e0:</i>  movs sp, r7<br><i>0x080002e2:</i>  pop {r7}<br><i>0x080002e4:</i>  bx lr",
+		ST:"192 bytes",
+		WST:"False",
+		WET:"True",
+		y:-12669.0,
+		ET:"22 cycles ",
+		label:"BB 36 (080002b4)",
+		id:"Node36"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-8865,
+		Code:"src/adc.c:ADC_Init:42",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x0800037a:</i>  nop<br><i>0x0800037c:</i>  pop {r7, pc}",
+		ST:"176 bytes",
+		WST:"False",
+		WET:"True",
+		y:-12369.0,
+		ET:"5 cycles ",
+		label:"BB 35 (0800037a)",
+		id:"Node35"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-8865,
+		Code:"src/adc.c:ADC_Init:20,21,23,24,27,29,33,34,37,39,41",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080002e8:</i>  push {r7, lr}<br><i>0x080002ea:</i>  add r7, sp, #0<br><i>0x080002ec:</i>  mov.w r3, #17408<br><i>0x080002f0:</i>  movt r3, #20480<br><i>0x080002f4:</i>  mov.w r2, #17408<br><i>0x080002f8:</i>  movt r2, #20480<br><i>0x080002fc:</i>  ldr r2, [r2, #0x7ffc00000014]<br><i>0x080002fe:</i>  orr.w r2, r2, #1<br><i>0x08000302:</i>  str r2, [r3, #0x7ffc00000014]<br><i>0x08000304:</i>  mov.w r3, #1073758208<br><i>0x08000308:</i>  movs r2, #0<br><i>0x0800030a:</i>  str r2, [r3, #0x7ffc00000000]<br><i>0x0800030c:</i>  mov.w r3, #1073758208<br><i>0x08000310:</i>  movw r2, #32774<br><i>0x08000314:</i>  str.w r2, [r3, #0x80]<br><i>0x08000318:</i>  mov.w r3, #17408<br><i>0x0800031c:</i>  movt r3, #16384<br><i>0x08000320:</i>  mov.w r2, #196611<br><i>0x08000324:</i>  str.w r2, [r3, #0x80]<br><i>0x08000328:</i>  mov.w r3, #17408<br><i>0x0800032c:</i>  movt r3, #16384<br><i>0x08000330:</i>  mov.w r2, #256<br><i>0x08000334:</i>  movt r2, #1024<br><i>0x08000338:</i>  str.w r2, [r3, #0x84]<br><i>0x0800033c:</i>  mov.w r3, #1073758208<br><i>0x08000340:</i>  movs r2, #2<br><i>0x08000342:</i>  str.w r2, [r3, #0x180]<br><i>0x08000346:</i>  mov.w r2, #1073758208<br><i>0x0800034a:</i>  mov.w r3, #32768<br><i>0x0800034e:</i>  movt r3, #128<br><i>0x08000352:</i>  str.w r3, [r2, #0x200]<br><i>0x08000356:</i>  mov.w r3, #1073758208<br><i>0x0800035a:</i>  movs r2, #1<br><i>0x0800035c:</i>  str.w r2, [r3, #0x204]<br><i>0x08000360:</i>  mov.w r2, #1073758208<br><i>0x08000364:</i>  mov.w r3, #1073758208<br><i>0x08000368:</i>  ldr.w r3, [r3, #0x204]<br><i>0x0800036c:</i>  orr.w r3, r3, #8<br><i>0x08000370:</i>  str.w r3, [r2, #0x204]<br><i>0x08000374:</i>  movs r0, #14<br><i>0x08000376:</i>  bl 80002b4",
+		ST:"176 bytes",
+		WST:"False",
+		WET:"True",
+		y:-12969.0,
+		ET:"44 cycles ",
+		label:"BB 34 (080002e8)",
+		id:"Node34"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-3080,
+		Code:"src/main.c:main:151,149",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080006d4:</i>  ldrh.w r3, [r7, #0x86]<br><i>0x080006d8:</i>  lsls r3, r3, #1<br><i>0x080006da:</i>  add.w r2, r7, #152<br><i>0x080006de:</i>  add r3, r2<br><i>0x080006e0:</i>  ldrh r2, [r3], #-0x94<br><i>0x080006e4:</i>  ldrh.w r3, [r7, #0x96]<br><i>0x080006e8:</i>  add r3, r2<br><i>0x080006ea:</i>  strh.w r3, [r7, #0x96]<br><i>0x080006ee:</i>  ldrh.w r3, [r7, #0x86]<br><i>0x080006f2:</i>  adds r3, #1<br><i>0x080006f4:</i>  strh.w r3, [r7, #0x86]",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-7569.0,
+		ET:"1792 cycles ",
+		label:"BB 33 (080006d4)",
+		id:"Node33"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-1955,
+		Code:"src/adc.c:ADC_Start:46,47,48",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000380:</i>  push {r7}<br><i>0x08000382:</i>  add r7, sp, #0<br><i>0x08000384:</i>  mov.w r2, #1073758208<br><i>0x08000388:</i>  mov.w r3, #1073758208<br><i>0x0800038c:</i>  ldr.w r3, [r3, #0x204]<br><i>0x08000390:</i>  orr.w r3, r3, #512<br><i>0x08000394:</i>  str.w r3, [r2, #0x204]<br><i>0x08000398:</i>  nop<br><i>0x0800039a:</i>  movs sp, r7<br><i>0x0800039c:</i>  pop {r7}<br><i>0x0800039e:</i>  bx lr",
+		ST:"172 bytes",
+		WST:"False",
+		WET:"True",
+		y:-6069.0,
+		ET:"1792 cycles ",
+		label:"BB 59 (08000380)",
+		id:"Node59"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-1365,
+		Code:"src/adc.c:ADC_Read_Blocking:76",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080003f2:</i>  nop",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-6969.0,
+		ET:"512 cycles ",
+		label:"BB 58 (080003f2)",
+		id:"Node58"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-4530,
+		Code:"src/main.c:main:154",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000700:</i>  ldrh.w r2, [r7, #0x96]<br><i>0x08000704:</i>  ldrh.w r3, [r7, #0x86]<br><i>0x08000708:</i>  udiv r3, r2, r3<br><i>0x0800070c:</i>  strh.w r3, [r7, #0x96]<br><i>0x08000710:</i>  b.n 0800072e",
+		ST:"168 bytes",
+		WST:"False",
+		WET:"True",
+		y:-7569.0,
+		ET:"12 cycles ",
+		label:"BB 32 (08000700)",
+		id:"Node32"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-640,
+		Code:"src/adc.c:ADC_Read_Blocking:72",
+		color:"rgb(60,179,113)",
+		Detail:"<br><i>0x080003f0:</i>  b.n 080003f4",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"False",
+		y:-7269.0,
+		ET:"1 cycles",
+		label:"BB 55 (080003f0)",
+		id:"Node55"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-1365,
+		Code:"src/adc.c:ADC_Read_Blocking:72",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080003e2:</i>  movw r3, #4<br><i>0x080003e6:</i>  movt r3, #8192<br><i>0x080003ea:</i>  ldrb r3, [r3, #0]<br><i>0x080003ec:</i>  cmp r3, #0<br><i>0x080003ee:</i>  beq.n 080003dc",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-7569.0,
+		ET:"22528 cycles ",
+		label:"BB 54 (080003e2)",
+		id:"Node54"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-1365,
+		Code:"src/adc.c:ADC_Read_Blocking:79,80",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080003f4:</i>  mov.w r3, #17408<br><i>0x080003f8:</i>  movt r3, #16384<br><i>0x080003fc:</i>  ldr.w r3, [r3, #0x300]<br><i>0x08000400:</i>  uxth r3, r3<br><i>0x08000402:</i>  movs r0, r3<br><i>0x08000404:</i>  adds r7, #12<br><i>0x08000406:</i>  movs sp, r7<br><i>0x08000408:</i>  pop {r7}<br><i>0x0800040a:</i>  bx lr",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-6669.0,
+		ET:"1536 cycles ",
+		label:"BB 57 (080003f4)",
+		id:"Node57"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-1365,
+		Code:"src/adc.c:ADC_Read_Blocking:74",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080003dc:</i>  ldrb r3, [r7, #7]<br><i>0x080003de:</i>  cmp r3, #0<br><i>0x080003e0:</i>  beq.n 080003f2",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-7269.0,
+		ET:"16896 cycles ",
+		label:"BB 56 (080003dc)",
+		id:"Node56"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-7665,
+		Code:"src/main.c:processData:89",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000574:</i>  b.n 08000578",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-5970.0,
+		ET:"4 cycles ",
+		label:"BB 51 (08000574)",
+		id:"Node51"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-7665,
+		Code:"src/main.c:processData:93",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000578:</i>  adds r7, #12<br><i>0x0800057a:</i>  movs sp, r7<br><i>0x0800057c:</i>  pop {r7}<br><i>0x0800057e:</i>  bx lr",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-5670.0,
+		ET:"14 cycles ",
+		label:"BB 50 (08000578)",
+		id:"Node50"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-1365,
+		Code:"src/adc.c:ADC_Read_Blocking:69,70,72",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x080003d0:</i>  push {r7}<br><i>0x080003d2:</i>  sub sp, #12<br><i>0x080003d4:</i>  add r7, sp, #0<br><i>0x080003d6:</i>  movs r3, #1<br><i>0x080003d8:</i>  strb r3, [r7, #7]<br><i>0x080003da:</i>  b.n 080003e2",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-7869.0,
+		ET:"1152 cycles ",
+		label:"BB 53 (080003d0)",
+		id:"Node53"
+	});
+
+	g.nodes.push({
+		Src:"",
+		x:-6145,
+		Code:"./sys/cmsis_gcc.h:processData:383",
+		color:"rgb(205,92,92)",
+		Detail:"<br><i>0x08000568:</i>  nop",
+		ST:"184 bytes",
+		WST:"False",
+		WET:"True",
+		y:-5970.0,
+		ET:"32760 cycles ",
+		label:"BB 52 (08000568)",
+		id:"Node52"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node31",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node57",
+		type:"arrow",
+		id:"1"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node46",
+		color:"rgb(1,1,1)",
+		label:"call processData",
+		source:"Node20",
+		type:"arrow",
+		id:"2"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node16",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node13",
+		type:"curvedArrow",
+		id:"3"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node17",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node13",
+		type:"arrow",
+		id:"4"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node38",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node37",
+		type:"curvedArrow",
+		id:"5"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node51",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node49",
+		type:"curvedArrow",
+		id:"6"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node24",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node50",
+		type:"arrow",
+		id:"7"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node52",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node49",
+		type:"curvedArrow",
+		id:"8"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node13",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node25",
+		type:"curvedArrow",
+		id:"9"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node38",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node40",
+		type:"curvedArrow",
+		id:"10"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node15",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node43",
+		type:"arrow",
+		id:"11"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node23",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node18",
+		type:"arrow",
+		id:"12"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node20",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node32",
+		type:"curvedArrow",
+		id:"13"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node55",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node54",
+		type:"curvedArrow",
+		id:"14"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node6",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node5",
+		type:"arrow",
+		id:"15"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node10",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node41",
+		type:"arrow",
+		id:"16"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node1",
+		color:"rgb(1,1,1)",
+		label:"call main",
+		source:"Node0",
+		type:"arrow",
+		id:"17"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node5",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node35",
+		type:"arrow",
+		id:"18"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node30",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node33",
+		type:"curvedArrow",
+		id:"19"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node36",
+		color:"rgb(1,1,1)",
+		label:"call NVIC_EnableIRQ",
+		source:"Node34",
+		type:"arrow",
+		id:"20"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node26",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node23",
+		type:"curvedArrow",
+		id:"21"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node27",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node23",
+		type:"curvedArrow",
+		id:"22"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node41",
+		color:"rgb(1,1,1)",
+		label:"call ADC_Stop",
+		source:"Node8",
+		type:"arrow",
+		id:"23"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node29",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node24",
+		type:"arrow",
+		id:"24"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node28",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node24",
+		type:"curvedArrow",
+		id:"25"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node19",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node45",
+		type:"arrow",
+		id:"26"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node3",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node2",
+		type:"curvedArrow",
+		id:"27"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node4",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node2",
+		type:"curvedArrow",
+		id:"28"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node8",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node7",
+		type:"arrow",
+		id:"29"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node9",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node7",
+		type:"curvedArrow",
+		id:"30"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node45",
+		color:"rgb(1,1,1)",
+		label:"call ADC_Stop",
+		source:"Node15",
+		type:"arrow",
+		id:"31"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node30",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node26",
+		type:"arrow",
+		id:"32"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node7",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node39",
+		type:"arrow",
+		id:"33"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node60",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node29",
+		type:"arrow",
+		id:"34"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node50",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node51",
+		type:"arrow",
+		id:"35"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node44",
+		color:"rgb(1,1,1)",
+		label:"call ADC_Start",
+		source:"Node14",
+		type:"curvedArrow",
+		id:"36"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node54",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node56",
+		type:"curvedArrow",
+		id:"37"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node14",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node42",
+		type:"arrow",
+		id:"38"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node25",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node21",
+		type:"curvedArrow",
+		id:"39"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node20",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node16",
+		type:"curvedArrow",
+		id:"40"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node53",
+		color:"rgb(1,1,1)",
+		label:"call ADC_Read_Blocking",
+		source:"Node27",
+		type:"arrow",
+		id:"41"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node59",
+		color:"rgb(1,1,1)",
+		label:"call ADC_Start",
+		source:"Node31",
+		type:"curvedArrow",
+		id:"42"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node50",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node48",
+		type:"curvedArrow",
+		id:"43"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node35",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node36",
+		type:"arrow",
+		id:"44"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node12",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node9",
+		type:"arrow",
+		id:"45"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node58",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node56",
+		type:"arrow",
+		id:"46"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node11",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node9",
+		type:"curvedArrow",
+		id:"47"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node57",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node58",
+		type:"arrow",
+		id:"48"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node37",
+		color:"rgb(1,1,1)",
+		label:"call fib",
+		source:"Node6",
+		type:"curvedArrow",
+		id:"49"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node6",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node28",
+		type:"curvedArrow",
+		id:"50"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node39",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node38",
+		type:"curvedArrow",
+		id:"51"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node34",
+		color:"rgb(1,1,1)",
+		label:"call ADC_Init",
+		source:"Node3",
+		type:"arrow",
+		id:"52"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node42",
+		color:"rgb(1,1,1)",
+		label:"call ADC_Read",
+		source:"Node11",
+		type:"arrow",
+		id:"53"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node25",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node22",
+		type:"arrow",
+		id:"54"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node56",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node54",
+		type:"curvedArrow",
+		id:"55"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node2",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node1",
+		type:"arrow",
+		id:"56"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node33",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node30",
+		type:"curvedArrow",
+		id:"57"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node32",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node30",
+		type:"curvedArrow",
+		id:"58"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node49",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node47",
+		type:"arrow",
+		id:"59"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node20",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node19",
+		type:"curvedArrow",
+		id:"60"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node54",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node53",
+		type:"arrow",
+		id:"61"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node43",
+		color:"rgb(1,1,1)",
+		label:"call ADC_Read",
+		source:"Node12",
+		type:"arrow",
+		id:"62"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node40",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node38",
+		type:"curvedArrow",
+		id:"63"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node13",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node10",
+		type:"arrow",
+		id:"64"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node2",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node4",
+		type:"curvedArrow",
+		id:"65"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node21",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node17",
+		type:"arrow",
+		id:"66"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node22",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node17",
+		type:"curvedArrow",
+		id:"67"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node18",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node44",
+		type:"arrow",
+		id:"68"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node47",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node46",
+		type:"curvedArrow",
+		id:"69"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node57",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node55",
+		type:"curvedArrow",
+		id:"70"
+	});
+
+	g.edges.push({
+		style:"dashed",
+		target:"Node23",
+		color:"rgb(1,1,1)",
+		label:"return",
+		source:"Node59",
+		type:"curvedArrow",
+		id:"71"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node48",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node46",
+		type:"arrow",
+		id:"72"
+	});
+
+	g.edges.push({
+		style:"",
+		target:"Node49",
+		color:"rgb(1,1,1)",
+		label:"",
+		source:"Node52",
+		type:"curvedArrow",
+		id:"73"
+	});
+
+
+    
+    docsClosePadding  = 8,
+    desiredDocsHeight = 300;
+    var doc = document.getElementById('docs-container');
+    var graph = document.getElementById('graph-container');
+    var EdgeLabels = true;
+    var NodeLabels = true;
+    var EdgeLabelSize = 12;
+    var NodeLabelSize = 12;
+    var NodeSize = 7;
+    var EdgeSize = 2;
+    var showsdoc = false;
+    var toggle = false;
+    var text = "";
+    var add = "";
+    var s = new sigma({
+        graph: g,
+        renderer: {
+            container: graph,
+            type: 'canvas'
+        },
+        settings: {
+            doubleClickEnabled: false,
+            enableEdgeHovering: false,
+            enableHovering:true,
+            edgeHoverColor: 'edge',
+            defaultEdgeHoverColor: '#000',
+            edgeLabelSize: 'proportional',
+            edgeLabelAlignment: 'auto',
+            minArrowSize: 5,
+            minEdgeSize: EdgeSize,
+            maxEdgeSize: EdgeSize,
+            minNodeSize: NodeSize,
+            maxNodeSize: NodeSize,
+            drawLabels: NodeLabels,
+            defaultLabelSize: NodeLabelSize,
+            defaultEdgeLabelSize: EdgeLabelSize,
+            drawEdgeLabels : EdgeLabels
+        }
+    });
+
+
+    
+    var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
+    
+    dragListener.bind('startdrag', function(event) {});
+    dragListener.bind('drag', function(event) {});
+    dragListener.bind('drop', function(event) {});
+    dragListener.bind('dragend', function(event) {});
+
+    s.bind('clickNode', function(e) {
+        showsdoc= true;
+        showDoc(showsdoc,e.data.node)
+    });
+    
+    s.bind('clickStage', function(e) {
+        showsdoc = false;
+        showDoc(showsdoc,"")
+    });
+    
+    s.bind('hovers', function(e) {
+        if (showsdoc == true && e.data.enter.nodes.length > 0) {
+          showDoc(showsdoc,e.data.enter.nodes[0])
+        }
+    });
+    function showDoc (show, node) {
+        var doc_head = document.getElementById("doc-head");
+        var doc_body = document.getElementById("doc-body")
+        if (show == true) {
+            if (doc_head == null){
+                var doc_head = document.createElement("div");
+                doc_head.id="doc-head";
+                doc_head.className="doc-head";
+                doc.appendChild(doc_head);
+            }
+            if (doc_body == null){
+                var doc_body = document.createElement("div");
+                doc_body.id="doc-body";
+                doc_body.className="doc-body";
+                doc.appendChild(doc_body);
+            }
+
+            doc_head.innerHTML = node.label;
+            
+            text =  '    <table>' +
+                    '      <tr><th>Exec. Time: </th> <td>' + node.ET + '</td></tr>' +
+                    '      <tr><th>Stack Usage:</th> <td>' + node.ST + '</td></tr>' +
+                    '    </table>';
+                    
+            add =   '    <table>' +
+                    '      <tr><th>Src. Code:</th> <td>' +
+                    '    </table>' + 
+                            node.Code + node.Src +
+                    '    <table>' +
+                    '      <tr><th><br>Assembly:</th></tr>' +
+                    '    </table>' +
+                            node.Detail;
+                    
+            if (toggle == true) {
+                doc_body.innerHTML = text + add;
+            }
+            else {
+                 doc_body.innerHTML = text;
+            }
+        }
+        else {
+            if (doc_head != null) {
+                doc.removeChild(doc_head);
+            }
+            if (doc_body != null){
+                doc.removeChild(doc_body);
+            }
+            text = "";
+            add = "";
+        }
+    }
+    
+    
+    $("#docs-container").on('click',".doc-head",function(){
+        doc_body = document.getElementById('doc-body');
+        toggle = !toggle;
+        if (toggle == true) {
+            doc_body.innerHTML = text +add;
+        }
+        else {
+            doc_body.innerHTML = text;
+        }
+    });
+    
+    
+    document.getElementById("info_head").addEventListener('click',function(){
+        info_body = document.getElementById('info_body');
+        if (info_body.style.display == "none") {
+            info_body.style.display = "";
+        }
+        else {
+            info_body.style.display = "none";
+        }
+    });
+    
+    document.getElementById("EdgeSizePlus").addEventListener("click", function(){
+        EdgeSize = EdgeSize +0.5;
+        s.settings('minEdgeSize',EdgeSize);
+        s.settings('maxEdgeSize',EdgeSize);
+        s.refresh();
+    });
+
+    
+    document.getElementById("EdgeSizeMinus").addEventListener("click", function(){
+        if (EdgeSize > 0) {
+            EdgeSize = EdgeSize - 0.5;
+        }
+        s.settings('minEdgeSize',EdgeSize);
+        s.settings('maxEdgeSize',EdgeSize);
+        s.refresh();
+    });
+    
+    document.getElementById("NodeSizePlus").addEventListener("click", function(){
+        NodeSize = NodeSize +1;
+        s.settings('minNodeSize',NodeSize);
+        s.settings('maxNodeSize',NodeSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("NodeSizeMinus").addEventListener("click", function(){
+        if (NodeSize > 0) {
+            NodeSize = NodeSize - 1;
+        }
+        s.settings('minNodeSize',NodeSize);
+        s.settings('maxNodeSize',NodeSize);
+        s.refresh();
+    });
+
+
+
+    document.getElementById("NodeLableSizePlus").addEventListener("click", function(){
+        NodeLabelSize = NodeLabelSize +1;
+        s.settings('defaultLabelSize',NodeLabelSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("NodeLableSizeMinus").addEventListener("click", function(){
+        if (NodeLabelSize > 0) {
+            NodeLabelSize = NodeLabelSize - 1;
+        }
+        s.settings('defaultLabelSize',NodeLabelSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("btnToggleNode").addEventListener("click", function(){
+        NodeLabels = !NodeLabels;
+        s.settings('drawLabels',NodeLabels);
+        s.refresh();
+    });
+    
+    
+    document.getElementById("EdgeLableSizePlus").addEventListener("click", function(){
+        EdgeLabelSize = EdgeLabelSize +1;
+        s.settings('defaultEdgeLabelSize',EdgeLabelSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("EdgeLableSizeMinus").addEventListener("click", function(){
+        if (EdgeLabelSize > 0) {
+            EdgeLabelSize = EdgeLabelSize - 1;
+        }
+        s.settings('defaultEdgeLabelSize',EdgeLabelSize);
+        s.refresh();
+    });
+
+
+    document.getElementById("btnToggleEdge").addEventListener("click", function(){
+        EdgeLabels = !EdgeLabels;
+        s.settings('drawEdgeLabels',EdgeLabels);
+        s.refresh();
+    });
+    
+    //sigma.canvas.edges.autoCurve(s);
+    sigma.parsers.json(g, s, function(){s.refresh()})
+</script>

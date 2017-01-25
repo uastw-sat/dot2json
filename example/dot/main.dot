@@ -1,0 +1,615 @@
+digraph main {
+	graph [bb="0,0,2232,9465",
+		bgcolor="#ffffff",
+		label="CFG: main\l",
+		lheight=0.21,
+		lp="1116,11.5",
+		lwidth=1.07
+	];
+	node [label="\N"];
+	Node0	 [bgcolor="#ffffff",
+		height=0.51389,
+		label="{ ENTRY}",
+		pos="2091,9446",
+		shape=Mrecord,
+		width=0.94444];
+	Node1	 [bgcolor="#ffffff",
+		height=4,
+		label="{ BB 1 (08000580)\lET: 16 cycles \lSU: 168 bytes\lsrc/main.c:main:99,101,102,103,106\l|\l0x08000580:  push \{r4, r7, lr\}\l0x08000582:  \
+sub sp, #156\l0x08000584:  add r7, sp, #0\l0x08000586:  movs r3, #0\l0x08000588:  strh.w r3, [r7, #0x96]\l0x0800058c:  mov.w r3, #\
+0\l0x08000590:  mov.w r4, #0\l0x08000594:  strd r3, r4, [r7, #0x88]\l0x08000598:  movs r3, #0\l0x0800059a:  strh.w r3, [r7, #0x86]\l0x0800059e:  \
+movs r3, #0\l0x080005a0:  strb.w r3, [r7, #0x85]\l0x080005a4:  b.n 080005c2\l}",
+		pos="2091,9215",
+		shape=Mrecord,
+		width=3.8958];
+	Node0 -> Node1	 [label="call main\l\l",
+		lp="2124,9393",
+		pos="e,2091,9358.6 2091,9427.8 2091,9413.8 2091,9392.6 2091,9368.9",
+		style=dashed];
+	Node2	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 2 (080005c2)\lET: 390 cycles \lSU: 168 bytes\lsrc/main.c:main:106\l|\l0x080005c2:  ldrb.w r3, [r7, #0x85]\l0x080005c6:  cmp \
+r3, #63\l0x080005c8:  bls.n 080005a6\l}",
+		pos="2091,8964",
+		shape=Mrecord,
+		width=3.7778];
+	Node1 -> Node2	 [pos="e,2091,9032.7 2091,9071.3 2091,9061.6 2091,9052 2091,9042.9"];
+	Node3	 [bgcolor="#ffffff",
+		height=2.9583,
+		label="{ BB 3 (080005ca)\lET: 9 cycles \lSU: 168 bytes\lsrc/main.c:main:108,110\l|\l0x080005ca:  mov.w r3, #33024\l0x080005ce:  movt r3, #\
+18434\l0x080005d2:  mov.w r2, #33024\l0x080005d6:  movt r2, #18434\l0x080005da:  ldr r2, [r2, #0x7ffc00000010]\l0x080005dc:  orr.w \
+r2, r2, #32768\l0x080005e0:  str r2, [r3, #0x7ffc00000010]\l0x080005e2:  bl 80002e8\l}",
+		pos="1773,8743",
+		shape=Mrecord,
+		width=4.5556];
+	Node2 -> Node3	 [pos="e,1925.6,8849.1 1992.6,8895.2 1973.9,8882.3 1953.9,8868.6 1933.9,8854.8"];
+	Node4	 [bgcolor="#ffffff",
+		height=3.1667,
+		label="{ BB 4 (080005a6)\lET: 768 cycles \lSU: 168 bytes\lsrc/main.c:main:106\l|\l0x080005a6:  ldrb.w r3, [r7, #0x85]\l0x080005aa:  lsls \
+r3, r3, #1\l0x080005ac:  add.w r2, r7, #152\l0x080005b0:  add r3, r2\l0x080005b2:  movs r2, #0\l0x080005b4:  strh r2, [r3, #-0x94]\l0x080005b8:  \
+ldrb.w r3, [r7, #0x85]\l0x080005bc:  adds r3, #1\l0x080005be:  strb.w r3, [r7, #0x85]\l}",
+		pos="2091,8743",
+		shape=Mrecord,
+		width=3.7778];
+	Node2 -> Node4	 [pos="e,2084.3,8856.6 2084.7,8895.2 2084.5,8886.1 2084.4,8876.5 2084.3,8866.7"];
+	Node34	 [bgcolor="#ffffff",
+		height=9.8333,
+		label="{ BB 34 (080002e8)\lET: 44 cycles \lSU: 176 bytes\lsrc/adc.c:ADC_Init:20,21,23,24,27,29,33,34,37,39,41\l|\l0x080002e8:  push \{r7, \
+lr\}\l0x080002ea:  add r7, sp, #0\l0x080002ec:  mov.w r3, #17408\l0x080002f0:  movt r3, #20480\l0x080002f4:  mov.w r2, #17408\l0x080002f8:  \
+movt r2, #20480\l0x080002fc:  ldr r2, [r2, #0x7ffc00000014]\l0x080002fe:  orr.w r2, r2, #1\l0x08000302:  str r2, [r3, #0x7ffc00000014]\l0x08000304:  \
+mov.w r3, #1073758208\l0x08000308:  movs r2, #0\l0x0800030a:  str r2, [r3, #0x7ffc00000000]\l0x0800030c:  mov.w r3, #1073758208\l0x08000310:  \
+movw r2, #32774\l0x08000314:  str.w r2, [r3, #0x80]\l0x08000318:  mov.w r3, #17408\l0x0800031c:  movt r3, #16384\l0x08000320:  mov.w \
+r2, #196611\l0x08000324:  str.w r2, [r3, #0x80]\l0x08000328:  mov.w r3, #17408\l0x0800032c:  movt r3, #16384\l0x08000330:  mov.w \
+r2, #256\l0x08000334:  movt r2, #1024\l0x08000338:  str.w r2, [r3, #0x84]\l0x0800033c:  mov.w r3, #1073758208\l0x08000340:  movs \
+r2, #2\l0x08000342:  str.w r2, [r3, #0x180]\l0x08000346:  mov.w r2, #1073758208\l0x0800034a:  mov.w r3, #32768\l0x0800034e:  movt \
+r3, #128\l0x08000352:  str.w r3, [r2, #0x200]\l0x08000356:  mov.w r3, #1073758208\l0x0800035a:  movs r2, #1\l0x0800035c:  str.w \
+r2, [r3, #0x204]\l0x08000360:  mov.w r2, #1073758208\l0x08000364:  mov.w r3, #1073758208\l0x08000368:  ldr.w r3, [r3, #0x204]\l0x0800036c:  \
+orr.w r3, r3, #8\l0x08000370:  str.w r3, [r2, #0x204]\l0x08000374:  movs r0, #14\l0x08000376:  bl 80002b4\l}",
+		pos="1773,8207",
+		shape=Mrecord,
+		width=5.5556];
+	Node3 -> Node34	 [label="call ADC_Init\l\l",
+		lp="1821.5,8595",
+		pos="e,1773,8560.5 1773,8636.8 1773,8616.5 1773,8594.1 1773,8570.6",
+		style=dashed];
+	Node4 -> Node2	 [pos="e,2097.3,8895.2 2097.7,8856.6 2097.7,8866.1 2097.6,8875.7 2097.5,8884.9"];
+	Node5	 [bgcolor="#ffffff",
+		height=1.7083,
+		label="{ BB 5 (080005e6)\lET: 5 cycles \lSU: 168 bytes\lsrc/main.c:main:112\l|\l0x080005e6:  movs r3, #0\l0x080005e8:  strb.w r3, [r7, #\
+0x85]\l}",
+		pos="1773,7117",
+		shape=Mrecord,
+		width=3.7778];
+	Node6	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 6 (080005ec)\lET: 12 cycles \lSU: 168 bytes\lsrc/main.c:main:115\l|\l0x080005ec:  mov.w r0, #20\l0x080005f0:  mov.w r1, #0\l0x080005f4:  \
+bl 8000500\l}",
+		pos="1773,6948",
+		shape=Mrecord,
+		width=3.0278];
+	Node5 -> Node6	 [pos="e,1773,7016.6 1773,7055.7 1773,7046.3 1773,7036.4 1773,7026.7"];
+	Node37	 [bgcolor="#ffffff",
+		height=3.5833,
+		label="{ BB 37 (08000500)\lET: 28 cycles \lSU: 200 bytes \lsrc/main.c:fib:67,69,70\l|\l0x08000500:  push \{r4, r7\}\l0x08000502:  sub sp, #\
+24\l0x08000504:  add r7, sp, #0\l0x08000506:  strd r0, r1, [r7]\l0x0800050a:  movs r3, #1\l0x0800050c:  str r3, [r7, #0x7ffc00000010]\l0x0800050e:  \
+movs r3, #0\l0x08000510:  str r3, [r7, #0x7ffc0000000c]\l0x08000512:  movs r3, #2\l0x08000514:  str r3, [r7, #0x7ffc00000014]\l0x08000516:  \
+b.n 0800052e\l}",
+		pos="1191,6682",
+		shape=Mrecord,
+		width=4.5625];
+	Node6 -> Node37	 [label="call fib\l\l",
+		lp="1593.5,6845",
+		pos="e,1355.8,6757.7 1663.9,6897.5 1579.9,6859.4 1462.1,6806 1365.1,6762",
+		style=dashed];
+	Node7	 [bgcolor="#ffffff",
+		height=2.9583,
+		label="{ BB 7 (080005f8)\lET: 22 cycles \lSU: 168 bytes\lsrc/main.c:main:115,117\l|\l0x080005f8:  strd r0, r1, [r7, #0x88]\l0x080005fc:  \
+ldrd r3, r4, [r7, #0x88]\l0x08000600:  movw r1, #299\l0x08000604:  mov.w r2, #0\l0x08000608:  cmp r2, r4\l0x0800060a:  it eq\l0x0800060c:  \
+cmpeq r1, r3\l0x0800060e:  bcc.n 08000668\l}",
+		pos="1348,5862",
+		shape=Mrecord,
+		width=3.8403];
+	Node8	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 8 (08000610)\lET: 3 cycles\lSU: 168 bytes\lsrc/main.c:main:119,120\l|\l0x08000610:  movs r3, #0\l0x08000612:  strh.w r3, [r7, #\
+0x96]\l0x08000616:  bl 80003a0\l}",
+		pos="1348,5618",
+		shape=Mrecord,
+		width=3.7778];
+	Node7 -> Node8	 [pos="e,1348,5686.7 1348,5755.9 1348,5736.1 1348,5715.7 1348,5696.9"];
+	Node9	 [bgcolor="#ffffff",
+		height=2.75,
+		label="{ BB 9 (08000668)\lET: 20 cycles \lSU: 168 bytes\lsrc/main.c:main:134\l|\l0x08000668:  ldrd r3, r4, [r7, #0x88]\l0x0800066c:  movw \
+r1, #6765\l0x08000670:  mov.w r2, #0\l0x08000674:  cmp r4, r2\l0x08000676:  it eq\l0x08000678:  cmpeq r3, r1\l0x0800067a:  bne.n \
+08000712\l}",
+		pos="957,5618",
+		shape=Mrecord,
+		width=3.8958];
+	Node7 -> Node9	 [pos="e,1097.7,5706.1 1209.3,5775.2 1175.9,5754.5 1140.1,5732.3 1106.2,5711.4"];
+	Node41	 [bgcolor="#ffffff",
+		height=2.5417,
+		label="{ BB 41 (080003a0)\lET: 8 cycles\lSU: 172 bytes\lsrc/adc.c:ADC_Stop:52,54\l|\l0x080003a0:  push \{r7\}\l0x080003a2:  add r7, sp, #\
+0\l0x080003a4:  nop\l0x080003a6:  movs sp, r7\l0x080003a8:  pop \{r7\}\l0x080003aa:  bx lr\l}",
+		pos="1348,5359",
+		shape=Mrecord,
+		width=3];
+	Node8 -> Node41	 [label="call ADC_Stop\l\l",
+		lp="1399.5,5485",
+		pos="e,1348,5450.3 1348,5549.5 1348,5522.2 1348,5490.2 1348,5460.3",
+		style=dashed];
+	Node11	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 11 (0800067c)\lET: 4 cycles \lSU: 168 bytes\lsrc/main.c:main:136\l|\l0x0800067c:  bl 80003ac\l}",
+		pos="776,5359",
+		shape=Mrecord,
+		width=2.6806];
+	Node9 -> Node11	 [pos="e,813.21,5412.8 888.31,5519.5 865.1,5486.5 839.86,5450.7 819.19,5421.3"];
+	Node12	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 12 (08000712)\lET: 3 cycles\lSU: 168 bytes\lsrc/main.c:main:158\l|\l0x08000712:  bl 80003ac\l}",
+		pos="957,5195",
+		shape=Mrecord,
+		width=2.6806];
+	Node9 -> Node12	 [pos="e,957,5248.5 957,5519.4 957,5439.1 957,5327.7 957,5258.8"];
+	Node10	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 10 (0800061a)\lET: 5 cycles\lSU: 168 bytes\lsrc/main.c:main:121\l|\l0x0800061a:  movs r3, #0\l0x0800061c:  strh.w r3, [r7, #\
+0x86]\l0x08000620:  b.n 0800065e\l}",
+		pos="1348,4964",
+		shape=Mrecord,
+		width=3.7778];
+	Node13	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 13 (0800065e)\lET: 5 cycles\lSU: 168 bytes\lsrc/main.c:main:121\l|\l0x0800065e:  ldrh.w r3, [r7, #0x86]\l0x08000662:  cmp r3, #\
+64\l0x08000664:  bls.n 08000622\l}",
+		pos="1348,4382",
+		shape=Mrecord,
+		width=3.7778];
+	Node10 -> Node13	 [pos="e,1348,4450.7 1348,4895.3 1348,4787 1348,4575.2 1348,4460.8"];
+	Node42	 [bgcolor="#ffffff",
+		height=4.4167,
+		label="{ BB 42 (080003ac)\lET: 17 cycles\lSU: 184 bytes\lsrc/adc.c:ADC_Read:59,60,62,64,65\l|\l0x080003ac:  push \{r7\}\l0x080003ae:  sub \
+sp, #12\l0x080003b0:  add r7, sp, #0\l0x080003b2:  movs r3, #0\l0x080003b4:  strh r3, [r7, #0x7ffc00000006]\l0x080003b6:  mov.w \
+r3, #17408\l0x080003ba:  movt r3, #16384\l0x080003be:  ldr.w r3, [r3, #0x300]\l0x080003c2:  strh r3, [r7, #0x7ffc00000006]\l0x080003c4:  \
+ldrh r3, [r7, #0x7ffc00000006]\l0x080003c6:  movs r0, r3\l0x080003c8:  adds r7, #12\l0x080003ca:  movs sp, r7\l0x080003cc:  pop \{\
+r7\}\l0x080003ce:  bx lr\l}",
+		pos="724,4964",
+		shape=Mrecord,
+		width=4.6806];
+	Node11 -> Node42	 [label="call ADC_Read\l\l",
+		lp="797.5,5195",
+		pos="e,729.05,5122.7 758.05,5305.3 752.69,5287.6 747.35,5267.6 744,5249 737.29,5211.7 732.81,5171.3 729.82,5133",
+		style=dashed];
+	Node43	 [bgcolor="#ffffff",
+		height=4.4167,
+		label="{ BB 43 (080003ac)\lET: 17 cycles\lSU: 184 bytes\lsrc/adc.c:ADC_Read:59,60,62,64,65\l|\l0x080003ac:  push \{r7\}\l0x080003ae:  sub \
+sp, #12\l0x080003b0:  add r7, sp, #0\l0x080003b2:  movs r3, #0\l0x080003b4:  strh r3, [r7, #0x7ffc00000006]\l0x080003b6:  mov.w \
+r3, #17408\l0x080003ba:  movt r3, #16384\l0x080003be:  ldr.w r3, [r3, #0x300]\l0x080003c2:  strh r3, [r7, #0x7ffc00000006]\l0x080003c4:  \
+ldrh r3, [r7, #0x7ffc00000006]\l0x080003c6:  movs r0, r3\l0x080003c8:  adds r7, #12\l0x080003ca:  movs sp, r7\l0x080003cc:  pop \{\
+r7\}\l0x080003ce:  bx lr\l}",
+		pos="957,4628",
+		shape=Mrecord,
+		width=4.6806];
+	Node12 -> Node43	 [label="call ADC_Read\l\l",
+		lp="1010.5,4964",
+		pos="e,957,4786.6 957,5141.4 957,5063.5 957,4914.2 957,4796.8",
+		style=dashed];
+	Node16	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 16 (08000666)\lET: 1 cycles\lSU: 168 bytes\lsrc/main.c:main:121\l|\l0x08000666:  b.n 0800072e\l}",
+		pos="1177,3741",
+		shape=Mrecord,
+		width=2.9514];
+	Node13 -> Node16	 [pos="e,1173,3794.6 1299.9,4313.4 1265.1,4260.5 1220.5,4183.6 1199,4109 1169.2,4005.5 1169.1,3878.9 1172.5,3804.7"];
+	Node17	 [bgcolor="#ffffff",
+		height=2.75,
+		label="{ BB 17 (08000622)\lET: 9 cycles\lSU: 168 bytes\lsrc/main.c:main:123\l|\l0x08000622:  ldrh.w r3, [r7, #0x96]\l0x08000626:  mov.w \
+r4, #0\l0x0800062a:  ldrd r1, r2, [r7, #0x88]\l0x0800062e:  cmp r2, r4\l0x08000630:  it eq\l0x08000632:  cmpeq r1, r3\l0x08000634:  \
+bcs.n 08000646\l}",
+		pos="1348,3980",
+		shape=Mrecord,
+		width=3.8889];
+	Node13 -> Node17	 [pos="e,1348,4078.9 1348,4313.1 1348,4251.9 1348,4160.6 1348,4089.2"];
+	Node14	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 14 (08000680)\lET: 8 cycles \lSU: 168 bytes\lsrc/main.c:main:137\l|\l0x08000680:  bl 8000380\l}",
+		pos="713,4382",
+		shape=Mrecord,
+		width=2.7083];
+	Node44	 [bgcolor="#ffffff",
+		height=3.5833,
+		label="{ BB 44 (08000380)\lET: 1792 cycles \lSU: 172 bytes\lsrc/adc.c:ADC_Start:46,47,48\l|\l0x08000380:  push \{r7\}\l0x08000382:  add \
+r7, sp, #0\l0x08000384:  mov.w r2, #1073758208\l0x08000388:  mov.w r3, #1073758208\l0x0800038c:  ldr.w r3, [r3, #0x204]\l0x08000390:  \
+orr.w r3, r3, #512\l0x08000394:  str.w r3, [r2, #0x204]\l0x08000398:  nop\l0x0800039a:  movs sp, r7\l0x0800039c:  pop \{r7\}\l0x0800039e:  \
+bx lr\l}",
+		pos="516,3980",
+		shape=Mrecord,
+		width=4.0347];
+	Node14 -> Node44	 [label="call ADC_Start\l\l",
+		lp="724.5,4211",
+		pos="e,578.94,4108.8 687.04,4328.3 660.79,4275 619.12,4190.4 583.47,4118",
+		style=dashed];
+	Node15	 [bgcolor="#ffffff",
+		height=2.3333,
+		label="{ BB 15 (08000716)\lET: 7 cycles\lSU: 168 bytes\lsrc/main.c:main:158,159\l|\l0x08000716:  movs r3, r0\l0x08000718:  uxth r3, r3\l0x0800071a:  \
+mov.w r4, #0\l0x0800071e:  strd r3, r4, [r7, #0x88]\l0x08000722:  bl 80003a0\l}",
+		pos="957,4211",
+		shape=Mrecord,
+		width=3.8889];
+	Node45	 [bgcolor="#ffffff",
+		height=2.5417,
+		label="{ BB 45 (080003a0)\lET: 8 cycles\lSU: 172 bytes\lsrc/adc.c:ADC_Stop:52,54\l|\l0x080003a0:  push \{r7\}\l0x080003a2:  add r7, sp, #\
+0\l0x080003a4:  nop\l0x080003a6:  movs sp, r7\l0x080003a8:  pop \{r7\}\l0x080003aa:  bx lr\l}",
+		pos="957,3741",
+		shape=Mrecord,
+		width=3];
+	Node15 -> Node45	 [label="call ADC_Stop\l\l",
+		lp="1008.5,3980",
+		pos="e,957,3832.1 957,4127.4 957,4047.9 957,3927.4 957,3842.3",
+		style=dashed];
+	Node20	 [bgcolor="#ffffff",
+		height=2.75,
+		label="{ BB 20 (0800072e)\lET: 20 cycles \lSU: 168 bytes\lsrc/main.c:main:164,166\l|\l0x0800072e:  mov.w r3, #33024\l0x08000732:  movt \
+r3, #18434\l0x08000736:  movs r2, #2\l0x08000738:  str r2, [r3, #0x7ffc00000000]\l0x0800073a:  ldrh.w r3, [r7, #0x96]\l0x0800073e:  \
+movs r0, r3\l0x08000740:  bl 8000554\l}",
+		pos="1071,2274",
+		shape=Mrecord,
+		width=4.5625];
+	Node16 -> Node20	 [pos="e,1091.3,2372.6 1148.3,3687.3 1140,3669.9 1131.9,3650 1127,3631 1099.4,3524.4 1108,3494.1 1108,3384 1108,3384 1108,3384 1108,2539 \
+1108,2487.3 1100.9,2430.4 1093,2382.7"];
+	Node21	 [bgcolor="#ffffff",
+		height=2.3333,
+		label="{ BB 21 (08000636)\lET: 5 cycles\lSU: 168 bytes\lsrc/main.c:main:125\l|\l0x08000636:  ldrd r3, r4, [r7, #0x88]\l0x0800063a:  adds \
+r3, #2\l0x0800063c:  adc.w r4, r4, #0\l0x08000640:  strd r3, r4, [r7, #0x88]\l0x08000644:  b.n 08000654\l}",
+		pos="1277,3547",
+		shape=Mrecord,
+		width=3.8958];
+	Node17 -> Node21	 [pos="e,1290.6,3630.7 1331.9,3881.5 1320.1,3809.4 1304,3711.9 1292.3,3640.9"];
+	Node22	 [bgcolor="#ffffff",
+		height=2.125,
+		label="{ BB 22 (08000646)\lET: 6 cycles\lSU: 168 bytes\lsrc/main.c:main:129\l|\l0x08000646:  ldrh.w r2, [r7, #0x96]\l0x0800064a:  ldrh.w \
+r3, [r7, #0x86]\l0x0800064e:  add r3, r2\l0x08000650:  strh.w r3, [r7, #0x96]\l}",
+		pos="1572,3547",
+		shape=Mrecord,
+		width=3.7778];
+	Node17 -> Node22	 [pos="e,1533,3623 1398.7,3881.5 1437.7,3806.3 1491.2,3703.6 1528.3,3632"];
+	Node18	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 18 (08000684)\lET: 12 cycles \lSU: 168 bytes\lsrc/main.c:main:139,140\l|\l0x08000684:  movs r3, #0\l0x08000686:  strh.w r3, [\
+r7, #0x86]\l0x0800068a:  b.n 080006be\l}",
+		pos="468,3547",
+		shape=Mrecord,
+		width=3.7778];
+	Node23	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 23 (080006be)\lET: 780 cycles \lSU: 168 bytes\lsrc/main.c:main:140\l|\l0x080006be:  ldrh.w r3, [r7, #0x86]\l0x080006c2:  cmp \
+r3, #63\l0x080006c4:  bls.n 0800068c\l}",
+		pos="456,3234",
+		shape=Mrecord,
+		width=3.7778];
+	Node18 -> Node23	 [pos="e,458.61,3302.7 465.38,3478.1 463.5,3429.5 460.97,3363.8 459.01,3313"];
+	Node19	 [bgcolor="#ffffff",
+		height=1.7083,
+		label="{ BB 19 (08000726)\lET: 4 cycles\lSU: 168 bytes\lsrc/main.c:main:160\l|\l0x08000726:  ldr.w r3, [r7, #0x88]\l0x0800072a:  strh.w \
+r3, [r7, #0x96]\l}",
+		pos="957,3383",
+		shape=Mrecord,
+		width=3.7778];
+	Node19 -> Node20	 [pos="e,1070.5,2372.8 1004.3,3321.9 1035.2,3276.6 1070,3211.3 1070,3147 1070,3147 1070,3147 1070,2539 1070,2487.7 1070.2,2430.7 1070.4,\
+2382.9"];
+	Node46	 [bgcolor="#ffffff",
+		height=2.9583,
+		label="{ BB 46 (08000554)\lET: 22 cycles \lSU: 184 bytes\lsrc/main.c:processData:84,85\l|\l0x08000554:  push \{r7\}\l0x08000556:  sub sp, #\
+12\l0x08000558:  add r7, sp, #0\l0x0800055a:  movs r3, r0\l0x0800055c:  strh r3, [r7, #0x7ffc00000006]\l0x0800055e:  ldrh r3, [r7, #\
+0x7ffc00000006]\l0x08000560:  cmp.w r3,#4096\l0x08000564:  bcs.n 08000576\l}",
+		pos="1078,1924",
+		shape=Mrecord,
+		width=4.6736];
+	Node20 -> Node46	 [label="call processData\l\l",
+		lp="1136,2103",
+		pos="e,1075.9,2030 1073,2175.1 1073.8,2133.2 1074.8,2083.8 1075.7,2040.1",
+		style=dashed];
+	Node25	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 25 (08000654)\lET: 5 cycles\lSU: 168 bytes\lsrc/main.c:main:121\l|\l0x08000654:  ldrh.w r3, [r7, #0x86]\l0x08000658:  adds \
+r3, #1\l0x0800065a:  strh.w r3, [r7, #0x86]\l}",
+		pos="1572,3234",
+		shape=Mrecord,
+		width=3.7778];
+	Node21 -> Node25	 [pos="e,1507.8,3302.7 1355.3,3463.5 1400.5,3415.8 1456.9,3356.3 1500.9,3310"];
+	Node22 -> Node25	 [pos="e,1572,3302.7 1572,3470.7 1572,3422.9 1572,3361.1 1572,3312.8"];
+	Node26	 [bgcolor="#ffffff",
+		height=2.3333,
+		label="{ BB 26 (080006c6)\lET: 12 cycles \lSU: 168 bytes\lsrc/main.c:main:148,149\l|\l0x080006c6:  movs r3, #0\l0x080006c8:  strh.w r3, [\
+r7, #0x96]\l0x080006cc:  movs r3, #0\l0x080006ce:  strh.w r3, [r7, #0x86]\l0x080006d2:  b.n 080006f8\l}",
+		pos="616,3043",
+		shape=Mrecord,
+		width=3.7778];
+	Node23 -> Node26	 [pos="e,545.96,3126.7 513.31,3165.3 521.74,3155.3 530.54,3144.9 539.29,3134.6"];
+	Node27	 [bgcolor="#ffffff",
+		height=1.7083,
+		label="{ BB 27 (0800068c)\lET: 640 cycles \lSU: 168 bytes\lsrc/main.c:main:142\l|\l0x0800068c:  ldrh.w r4, [r7, #0x86]\l0x08000690:  bl \
+80003d0\l}",
+		pos="273,3043",
+		shape=Mrecord,
+		width=3.7778];
+	Node23 -> Node27	 [pos="e,331.11,3104 390.45,3165.3 373.49,3147.8 355.23,3128.9 338.28,3111.4"];
+	Node24	 [bgcolor="#ffffff",
+		height=2.75,
+		label="{ BB 24 (08000744)\lET: 20 cycles \lSU: 168 bytes\lsrc/main.c:main:168,174\l|\l0x08000744:  mov.w r3, #33024\l0x08000748:  movt \
+r3, #18434\l0x0800074c:  movs r2, #0\l0x0800074e:  str r2, [r3, #0x7ffc00000000]\l0x08000750:  ldrb.w r3, [r7, #0x85]\l0x08000754:  \
+cmp r3, #1\l0x08000756:  beq.n 0800075a\l}",
+		pos="1535,434",
+		shape=Mrecord,
+		width=4.5556];
+	Node28	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 28 (08000758)\lET: 2 cycles \lSU: 168 bytes\lsrc/main.c:main:178\l|\l0x08000758:  b.n 080005ec\l}",
+		pos="1774,205",
+		shape=Mrecord,
+		width=2.9306];
+	Node24 -> Node28	 [pos="e,1718.4,258.78 1637.7,335.41 1662.6,311.77 1688.5,287.19 1711,265.88"];
+	Node29	 [bgcolor="#ffffff",
+		height=2.5417,
+		label="{ BB 29 (0800075a)\lET: 9 cycles \lSU: 168 bytes\lsrc/main.c:main:176,180,181\l|\l0x0800075a:  nop\l0x0800075c:  movs r3, #0\l0x0800075e:  \
+movs r0, r3\l0x08000760:  adds r7, #156\l0x08000762:  movs sp, r7\l0x08000764:  pop \{r4, r7, pc\}\l}",
+		pos="1535,205",
+		shape=Mrecord,
+		width=3.1806];
+	Node24 -> Node29	 [pos="e,1535,296.33 1535,335.41 1535,325.78 1535,315.99 1535,306.34"];
+	Node25 -> Node13	 [pos="e,1395.5,4313.4 1629.7,3302.8 1662.3,3345.7 1699.8,3404 1717,3463 1737.9,3534.7 1733,3558.1 1717,3631 1658.9,3896.3 1488.5,4174.5 \
+1401.1,4305"];
+	Node30	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 30 (080006f8)\lET: 780 cycles \lSU: 168 bytes\lsrc/main.c:main:149\l|\l0x080006f8:  ldrh.w r3, [r7, #0x86]\l0x080006fc:  cmp \
+r3, #63\l0x080006fe:  bls.n 080006d4\l}",
+		pos="616,2799",
+		shape=Mrecord,
+		width=3.7292];
+	Node26 -> Node30	 [pos="e,616,2867.8 616,2959.4 616,2933 616,2904 616,2878"];
+	Node53	 [bgcolor="#ffffff",
+		height=2.5417,
+		label="{ BB 53 (080003d0)\lET: 1152 cycles \lSU: 184 bytes\lsrc/adc.c:ADC_Read_Blocking:69,70,72\l|\l0x080003d0:  push \{r7\}\l0x080003d2:  \
+sub sp, #12\l0x080003d4:  add r7, sp, #0\l0x080003d6:  movs r3, #1\l0x080003d8:  strb r3, [r7, #7]\l0x080003da:  b.n 080003e2\l}",
+		pos="266,2799",
+		shape=Mrecord,
+		width=4.1736];
+	Node27 -> Node53	 [label="call ADC_Read_Blocking\l\l",
+		lp="349,2925",
+		pos="e,259.3,2890.3 263.97,2981.8 262.32,2968.4 260.85,2954.2 260,2941 259.16,2927.9 258.94,2914.2 259.1,2900.6",
+		style=dashed];
+	Node28 -> Node6	 [pos="e,1773.4,6879.5 1774,258.75 1774,304.76 1774,373.29 1774,433 1774,6683 1774,6683 1774,6683 1774,6745.6 1773.7,6816.6 1773.4,6869.2"];
+	Node60	 [bgcolor="#ffffff",
+		height=0.51389,
+		label="{ EXIT}",
+		pos="1535,42",
+		shape=Mrecord,
+		width=0.75];
+	Node29 -> Node60	 [label="return\l",
+		lp="1558,87",
+		pos="e,1535,60.148 1535,113.62 1535,97.921 1535,82.735 1535,70.493",
+		style=dashed];
+	Node32	 [bgcolor="#ffffff",
+		height=2.3333,
+		label="{ BB 32 (08000700)\lET: 12 cycles \lSU: 168 bytes\lsrc/main.c:main:154\l|\l0x08000700:  ldrh.w r2, [r7, #0x96]\l0x08000704:  ldrh.w \
+r3, [r7, #0x86]\l0x08000708:  udiv r3, r2, r3\l0x0800070c:  strh.w r3, [r7, #0x96]\l0x08000710:  b.n 0800072e\l}",
+		pos="906,2540",
+		shape=Mrecord,
+		width=3.7778];
+	Node30 -> Node32	 [pos="e,812.72,2623.7 692.19,2730.5 726.66,2699.9 767.88,2663.4 804.89,2630.6"];
+	Node33	 [bgcolor="#ffffff",
+		height=3.5833,
+		label="{ BB 33 (080006d4)\lET: 1792 cycles \lSU: 168 bytes\lsrc/main.c:main:151,149\l|\l0x080006d4:  ldrh.w r3, [r7, #0x86]\l0x080006d8:  \
+lsls r3, r3, #1\l0x080006da:  add.w r2, r7, #152\l0x080006de:  add r3, r2\l0x080006e0:  ldrh r2, [r3], #-0x94\l0x080006e4:  ldrh.w \
+r3, [r7, #0x96]\l0x080006e8:  add r3, r2\l0x080006ea:  strh.w r3, [r7, #0x96]\l0x080006ee:  ldrh.w r3, [r7, #0x86]\l0x080006f2:  \
+adds r3, #1\l0x080006f4:  strh.w r3, [r7, #0x86]\l}",
+		pos="616,2540",
+		shape=Mrecord,
+		width=3.7778];
+	Node30 -> Node33	 [pos="e,609.25,2668.7 609.98,2730.5 609.57,2714.6 609.33,2697 609.27,2679.2"];
+	Node31	 [bgcolor="#ffffff",
+		height=4.2083,
+		label="{ BB 31 (08000694)\lET: 2176 cycles \lSU: 168 bytes\lsrc/main.c:main:142,143,144,145\l|\l0x08000694:  movs r3, r0\l0x08000696:  \
+movs r2, r3\l0x08000698:  lsls r3, r4, #1\l0x0800069a:  add.w r1, r7, #152\l0x0800069e:  add r3, r1\l0x080006a0:  strh r2, [r3, #\
+-0x94]\l0x080006a4:  ldrh.w r3, [r7, #0x86]\l0x080006a8:  adds r3, #1\l0x080006aa:  strh.w r3, [r7, #0x86]\l0x080006ae:  movw r3, #\
+4\l0x080006b2:  movt r3, #8192\l0x080006b6:  movs r2, #0\l0x080006b8:  strb r2, [r3, #0]\l0x080006ba:  bl 8000380\l}",
+		pos="287,1255",
+		shape=Mrecord,
+		width=3.7778];
+	Node59	 [bgcolor="#ffffff",
+		height=3.5833,
+		label="{ BB 59 (08000380)\lET: 1792 cycles \lSU: 172 bytes\lsrc/adc.c:ADC_Start:46,47,48\l|\l0x08000380:  push \{r7\}\l0x08000382:  add \
+r7, sp, #0\l0x08000384:  mov.w r2, #1073758208\l0x08000388:  mov.w r3, #1073758208\l0x0800038c:  ldr.w r3, [r3, #0x204]\l0x08000390:  \
+orr.w r3, r3, #512\l0x08000394:  str.w r3, [r2, #0x204]\l0x08000398:  nop\l0x0800039a:  movs sp, r7\l0x0800039c:  pop \{r7\}\l0x0800039e:  \
+bx lr\l}",
+		pos="391,906",
+		shape=Mrecord,
+		width=4.0347];
+	Node31 -> Node59	 [label="call ADC_Start\l\l",
+		lp="384.5,1069",
+		pos="e,337.04,1034.7 316.82,1104 321.15,1086.7 325.89,1069.4 331,1053 331.88,1050.2 332.79,1047.3 333.73,1044.5",
+		style=dashed];
+	Node32 -> Node20	 [pos="e,1009.9,2372.8 957.75,2456.2 972.55,2432.5 988.88,2406.4 1004.4,2381.5"];
+	Node33 -> Node30	 [pos="e,622.02,2730.5 622.75,2668.7 622.75,2686.4 622.59,2704.1 622.25,2720.5"];
+	Node36	 [bgcolor="#ffffff",
+		height=5.25,
+		label="{ BB 36 (080002b4)\lET: 22 cycles \lSU: 192 bytes\l./sys/core_cm4.h:NVIC_EnableIRQ:1600,1601,1602\l|\l0x080002b4:  push \{r7\}\l0x080002b6:  \
+sub sp, #12\l0x080002b8:  add r7, sp, #0\l0x080002ba:  movs r3, r0\l0x080002bc:  strb r3, [r7, #7]\l0x080002be:  mov.w r3, #57600\l0x080002c2:  \
+movt r3, #57344\l0x080002c6:  ldrsb r2, [r7, #0x7]\l0x080002ca:  lsrs r2, r2, #5\l0x080002cc:  ldrb r1, [r7, #7]\l0x080002ce:  and.w \
+r1, r1, #31\l0x080002d2:  movs r0, #1\l0x080002d4:  lsl.w r1, r0, r1\l0x080002d8:  str.w r1, [r3, r2, lsl #2]\l0x080002dc:  nop\l0x080002de:  \
+adds r7, #12\l0x080002e0:  movs sp, r7\l0x080002e2:  pop \{r7\}\l0x080002e4:  bx lr\l}",
+		pos="1773,7596",
+		shape=Mrecord,
+		width=5.375];
+	Node34 -> Node36	 [label="call NVIC_EnableIRQ\l\l",
+		lp="1851,7819",
+		pos="e,1773,7784.7 1773,7853.1 1773,7833.2 1773,7813.7 1773,7794.8",
+		style=dashed];
+	Node35	 [bgcolor="#ffffff",
+		height=1.7083,
+		label="{ BB 35 (0800037a)\lET: 5 cycles \lSU: 176 bytes\lsrc/adc.c:ADC_Init:42\l|\l0x0800037a:  nop\l0x0800037c:  pop \{r7, pc\}\l}",
+		pos="1773,7293",
+		shape=Mrecord,
+		width=2.8403];
+	Node35 -> Node5	 [label="return\l",
+		lp="1796,7205",
+		pos="e,1773,7178.3 1773,7231.6 1773,7217.7 1773,7202.8 1773,7188.5",
+		style=dashed];
+	Node36 -> Node35	 [label="return\l",
+		lp="1796,7381",
+		pos="e,1773,7354 1773,7407.4 1773,7392.2 1773,7377.5 1773,7364.1",
+		style=dashed];
+	Node38	 [bgcolor="#ffffff",
+		height=2.75,
+		label="{ BB 38 (0800052e)\lET: 400 cycles \lSU: 200 bytes \lsrc/main.c:fib:70\l|\l0x0800052e:  ldr r3, [r7, #0x7ffc00000014]\l0x08000530:  \
+asr.w r4, r3, #31\l0x08000534:  ldrd r1, r2, [r7]\l0x08000538:  cmp r2, r4\l0x0800053a:  it eq\l0x0800053c:  cmpeq r1, r3\l0x0800053e:  \
+bcs.n 08000518\l}",
+		pos="1046,6416",
+		shape=Mrecord,
+		width=4.5556];
+	Node37 -> Node38	 [pos="e,1099.6,6514.5 1120.8,6553.3 1115.4,6543.3 1109.9,6533.3 1104.5,6523.5"];
+	Node39	 [bgcolor="#ffffff",
+		height=2.9583,
+		label="{ BB 39 (08000540)\lET: 18 cycles \lSU: 200 bytes \lsrc/main.c:fib:76,77\l|\l0x08000540:  ldr r3, [r7, #0x7ffc00000010]\l0x08000542:  \
+asr.w r4, r3, #31\l0x08000546:  movs r0, r3\l0x08000548:  movs r1, r4\l0x0800054a:  adds r7, #24\l0x0800054c:  movs sp, r7\l0x0800054e:  \
+pop \{r4, r7\}\l0x08000550:  bx lr\l}",
+		pos="1357,6150",
+		shape=Mrecord,
+		width=4.5625];
+	Node38 -> Node39	 [pos="e,1233.1,6256.1 1160.9,6317.4 1181.9,6299.7 1203.9,6281 1225.3,6262.8"];
+	Node40	 [bgcolor="#ffffff",
+		height=3.5833,
+		label="{ BB 40 (08000518)\lET: 532 cycles \lSU: 200 bytes \lsrc/main.c:fib:72,73,74,70\l|\l0x08000518:  ldr r3, [r7, #0x7ffc00000010]\l0x0800051a:  \
+str r3, [r7, #0x7ffc00000008]\l0x0800051c:  ldr r2, [r7, #0x7ffc00000010]\l0x0800051e:  ldr r3, [r7, #0x7ffc0000000c]\l0x08000520:  \
+add r3, r2\l0x08000522:  str r3, [r7, #0x7ffc00000010]\l0x08000524:  ldr r3, [r7, #0x7ffc00000008]\l0x08000526:  str r3, [r7, #0x7ffc0000000c]\l0x08000528:  \
+ldr r3, [r7, #0x7ffc00000014]\l0x0800052a:  adds r3, #1\l0x0800052c:  str r3, [r7, #0x7ffc00000014]\l}",
+		pos="1010,6150",
+		shape=Mrecord,
+		width=4.5625];
+	Node38 -> Node40	 [pos="e,1020.7,6278.7 1026.2,6317.4 1024.8,6308.1 1023.4,6298.4 1022,6288.8"];
+	Node39 -> Node7	 [label="return\l",
+		lp="1376,5995",
+		pos="e,1351.3,5968.1 1353.7,6043.7 1353,6022.4 1352.3,5999.9 1351.6,5978.3",
+		style=dashed];
+	Node40 -> Node38	 [pos="e,1039.2,6317.4 1034.2,6278.7 1035.5,6288.3 1036.8,6297.9 1038,6307.3"];
+	Node41 -> Node10	 [label="return\l",
+		lp="1371,5195",
+		pos="e,1348,5032.7 1348,5267.8 1348,5199.9 1348,5107.6 1348,5042.8",
+		style=dashed];
+	Node42 -> Node14	 [label="return\l",
+		lp="744,4628",
+		pos="e,714,4435.8 721.01,4805.3 718.77,4687 715.81,4531.3 714.19,4445.9",
+		style=dashed];
+	Node43 -> Node15	 [label="return\l",
+		lp="980,4382",
+		pos="e,957,4294.6 957,4469.2 957,4413.7 957,4353.1 957,4304.7",
+		style=dashed];
+	Node44 -> Node18	 [label="return\l",
+		lp="523,3741",
+		pos="e,475.53,3615.6 501.79,3851.4 493.64,3778.2 483.66,3688.6 476.67,3625.8",
+		style=dashed];
+	Node45 -> Node19	 [label="return\l",
+		lp="980,3547",
+		pos="e,957,3444.3 957,3649.7 957,3589.1 957,3510.4 957,3454.4",
+		style=dashed];
+	Node47	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 47 (08000566)\lET: 4 cycles \lSU: 184 bytes\lsrc/main.c:processData:89\l|\l0x08000566:  b.n 0800056a\l}",
+		pos="1229,1665",
+		shape=Mrecord,
+		width=2.9514];
+	Node46 -> Node47	 [pos="e,1198,1718.7 1139.9,1817.7 1157.9,1787.1 1176.9,1754.6 1192.8,1727.6"];
+	Node48	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 48 (08000576)\lET: 3 cycles\lSU: 184 bytes\lsrc/main.c:processData:87\l|\l0x08000576:  nop\l}",
+		pos="1078,1479",
+		shape=Mrecord,
+		width=2.8889];
+	Node46 -> Node48	 [pos="e,1078,1532.5 1078,1817.7 1078,1732.1 1078,1614.2 1078,1542.7"];
+	Node49	 [bgcolor="#ffffff",
+		height=2.3333,
+		label="{ BB 49 (0800056a)\lET: 65536 cycles \lSU: 184 bytes\lsrc/main.c:processData:89\l|\l0x0800056a:  ldrh r3, [r7, #0x7ffc00000006]\l0x0800056c:  \
+subs r2, r3, #1\l0x0800056e:  strh r2, [r7, #0x7ffc00000006]\l0x08000570:  cmp r3, #0\l0x08000572:  bne.n 08000568\l}",
+		pos="1275,1255",
+		shape=Mrecord,
+		width=4.6736];
+	Node47 -> Node49	 [pos="e,1265.7,1338.7 1234.9,1611.5 1242.4,1545.2 1255.4,1430.2 1264.5,1348.9"];
+	Node50	 [bgcolor="#ffffff",
+		height=2.125,
+		label="{ BB 50 (08000578)\lET: 14 cycles \lSU: 184 bytes\lsrc/main.c:processData:93\l|\l0x08000578:  adds r7, #12\l0x0800057a:  movs sp, \
+r7\l0x0800057c:  pop \{r7\}\l0x0800057e:  bx lr\l}",
+		pos="1533,662",
+		shape=Mrecord,
+		width=2.8889];
+	Node48 -> Node50	 [pos="e,1429,679.23 1063.6,1425.1 1032.3,1297 972.86,966.52 1133,777 1169.9,733.32 1314.3,700.05 1419,681.03"];
+	Node51	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 51 (08000574)\lET: 4 cycles \lSU: 184 bytes\lsrc/main.c:processData:89\l|\l0x08000574:  b.n 08000578\l}",
+		pos="1533,906",
+		shape=Mrecord,
+		width=2.9583];
+	Node49 -> Node51	 [pos="e,1493.8,959.66 1336.5,1171.3 1383,1108.8 1445.8,1024.2 1487.8,967.78"];
+	Node52	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 52 (08000568)\lET: 32760 cycles \lSU: 184 bytes\l./sys/cmsis_gcc.h:processData:383\l|\l0x08000568:  nop\l}",
+		pos="1275,906",
+		shape=Mrecord,
+		width=3.6944];
+	Node49 -> Node52	 [pos="e,1270,959.66 1269.2,1171.3 1267.8,1109.5 1268,1026.3 1269.7,969.87"];
+	Node50 -> Node24	 [label="return\l",
+		lp="1557,559",
+		pos="e,1534.1,532.84 1533.7,585.75 1533.8,571.97 1533.9,557.36 1534,542.85",
+		style=dashed];
+	Node51 -> Node50	 [pos="e,1533,738.37 1533,852.49 1533,822.12 1533,783.18 1533,748.5"];
+	Node52 -> Node49	 [pos="e,1280.8,1171.3 1280,959.66 1281.9,1013 1282.3,1096.6 1281.1,1161.1"];
+	Node54	 [bgcolor="#ffffff",
+		height=2.3333,
+		label="{ BB 54 (080003e2)\lET: 22528 cycles \lSU: 184 bytes\lsrc/adc.c:ADC_Read_Blocking:72\l|\l0x080003e2:  movw r3, #4\l0x080003e6:  \
+movt r3, #8192\l0x080003ea:  ldrb r3, [r3, #0]\l0x080003ec:  cmp r3, #0\l0x080003ee:  beq.n 080003dc\l}",
+		pos="280,2540",
+		shape=Mrecord,
+		width=3.5556];
+	Node53 -> Node54	 [pos="e,275.49,2623.7 270.92,2707.8 272.22,2683.8 273.63,2658 274.94,2633.9"];
+	Node55	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 55 (080003f0)\lET: 1 cycles\lSU: 184 bytes\lsrc/adc.c:ADC_Read_Blocking:72\l|\l0x080003f0:  b.n 080003f4\l}",
+		pos="128,2103",
+		shape=Mrecord,
+		width=3.5556];
+	Node54 -> Node55	 [pos="e,122.69,2156.6 197.6,2456.2 177.6,2431.3 158.64,2402.7 147,2373 120.82,2306.1 119.2,2222.7 122.1,2166.7"];
+	Node56	 [bgcolor="#ffffff",
+		height=1.9167,
+		label="{ BB 56 (080003dc)\lET: 16896 cycles \lSU: 184 bytes\lsrc/adc.c:ADC_Read_Blocking:74\l|\l0x080003dc:  ldrb r3, [r7, #7]\l0x080003de:  \
+cmp r3, #0\l0x080003e0:  beq.n 080003f2\l}",
+		pos="284,2274",
+		shape=Mrecord,
+		width=3.5556];
+	Node54 -> Node56	 [pos="e,276.98,2342.9 274.94,2456.2 274.83,2423.3 275.43,2385.7 276.59,2353.3"];
+	Node57	 [bgcolor="#ffffff",
+		height=3.1667,
+		label="{ BB 57 (080003f4)\lET: 1536 cycles \lSU: 184 bytes\lsrc/adc.c:ADC_Read_Blocking:79,80\l|\l0x080003f4:  mov.w r3, #17408\l0x080003f8:  \
+movt r3, #16384\l0x080003fc:  ldr.w r3, [r3, #0x300]\l0x08000400:  uxth r3, r3\l0x08000402:  movs r0, r3\l0x08000404:  adds r7, #\
+12\l0x08000406:  movs sp, r7\l0x08000408:  pop \{r7\}\l0x0800040a:  bx lr\l}",
+		pos="284,1665",
+		shape=Mrecord,
+		width=3.8611];
+	Node55 -> Node57	 [pos="e,168.12,1778.8 121.48,2049.5 116.39,1990.4 114.77,1892.9 147,1817 151.29,1806.9 156.55,1797 162.49,1787.5"];
+	Node56 -> Node54	 [pos="e,287.57,2456.2 288.96,2342.9 289.29,2374.2 288.89,2411.9 287.9,2445.8"];
+	Node58	 [bgcolor="#ffffff",
+		height=1.5,
+		label="{ BB 58 (080003f2)\lET: 512 cycles \lSU: 184 bytes\lsrc/adc.c:ADC_Read_Blocking:76\l|\l0x080003f2:  nop\l}",
+		pos="284,1924",
+		shape=Mrecord,
+		width=3.5556];
+	Node56 -> Node58	 [pos="e,284,1977.6 284,2205.5 284,2142.5 284,2049.3 284,1987.9"];
+	Node57 -> Node31	 [label="return\l",
+		lp="309,1479",
+		pos="e,285.9,1406 284.83,1551.4 285.13,1509.7 285.49,1461.4 285.82,1416.2",
+		style=dashed];
+	Node58 -> Node57	 [pos="e,284,1778.7 284,1870.4 284,1846.7 284,1817.6 284,1788.9"];
+	Node59 -> Node23	 [label="return\l",
+		lp="475,2274",
+		pos="e,453.87,3165.2 434.05,1034.7 435.51,1040.9 436.84,1047 438,1053 454.96,1140.9 452,1164.5 452,1254 452,3044 452,3044 452,3044 452,\
+3080.4 452.75,3120.8 453.6,3154.9",
+		style=dashed];
+}
