@@ -144,6 +144,7 @@ def sortChilds(nodes, ends):
 ### Recursive Function for forward aligment(x/y) of nodes
 def align(start, ends, nodes, yoff):
 	
+	#print (("" + nodes[start]["width"]  + "\n"))
 	# Set actual node to done to prevent infinite recursion
 	nodes[start]["done"] = True
 	ends = sortChilds(nodes,ends)
@@ -163,7 +164,16 @@ def align(start, ends, nodes, yoff):
 		#print (("\t" + start + "\t(" 	+ '% 6d' % xpos1 + "," 	+ '% 6d' % ypos1 			+ ")"))
 		#print (("\t" + i + "\t(" 		+ '% 6d' % xpos2 + "," 	+ '% 6d' % ypos2 			+ ")"))
 		#print (("\tDiff:\t(" 			+ '% 6d' % diff_abs_x 	+ "," + '% 6d' % diff_rel_y + ")"))
-		
+		print (("pre_X: " + str(nodes[start]["x"])))
+		print (("pre_Y: " + str(nodes[start]["y"])))
+		print (("pre_H: " + str(nodes[start]["height"])))
+		print (("pre_W: " + str(nodes[start]["width"] +"\n")))
+		print (("suc_X: " + str(nodes[i]["x"])))
+		print (("suc_Y: " + str(nodes[i]["y"])))
+		print (("suc_H: " + str(nodes[i]["height"])))
+		print (("suc_W: " + str(nodes[i]["width"])))
+		print ("\n")
+		print ("\n")
 		# Adapt x position if diff between nodes to short
 		if diff_abs_x < constXMove:
 			xpos2 = xpos1
@@ -286,6 +296,8 @@ def dot2json(path_in_dot):
 			tar = tar.replace("\\","")
 			tar = tar.strip()
 			
+			#print(src)
+			#print(tar)
 			
 			if src in dot_keywords:
 				if src in dot_sigma_key_map.keys():
@@ -312,8 +324,8 @@ def dot2json(path_in_dot):
 			nodedata["id"] = name
 			ret = nodedata["pos"].find(",")
 			if ret > -1:
-				nodedata["x"] = float(nodedata["pos"][:ret]) 		* constXMult
-				nodedata["y"] = float(nodedata["pos"][ret+1:]) 	* constYMult
+				nodedata["x"] = float(nodedata["pos"][:ret])# 	* constXMult
+				nodedata["y"] = float(nodedata["pos"][ret+1:])# 	* constYMult
 			else:
 				nodedata["x"] = 0
 				nodedata["y"] = 0
@@ -321,23 +333,31 @@ def dot2json(path_in_dot):
 			nodedata["wet"] = False
 			nodedata["wst"] = False
 			nodedata["done"] = False
+			
 			temp = nodedata["label"]
 			
-			# Find end of Label-Header
+			
+			# Find first end of header |
 			ret  = temp.find("|")
 			
+			# If none found, set to end of string
 			if ret == -1:
-				ret = len(temp) -1
+				ret = len(temp)
 			
-			if ret != -1:
-				head = temp[:ret]
-				body = temp[ret+1:]
-				
+			head = temp[:ret]
+			body = temp[ret+1:]
+			
+			
+			ret  = head.find("\n")
+			if ret == -1:
+				nodedata["bb"] = head
+			else:
 				prev = 0
 				cnt  = 0
 				for ret in re.finditer("\n",head):
 					lab  = head[prev:ret.start()]
-					#print (lab)
+					#print lab
+					
 					prev = ret.end()
 					cnt += 1
 					if cnt == 1:
@@ -403,8 +423,8 @@ def dot2json(path_in_dot):
 				
 				temp = temp.replace("\n", "<br>")
 				nodedata["Detail"] = temp
-			else:
-				nodedata["bb"] = nodedata["label"] 
+			#else:
+			#	nodedata["bb"] = nodedata["label"] 
 				
 			if nodedata["wet"] and nodedata["wst"]:
 				nodedata["color"] = colYellow
@@ -433,6 +453,7 @@ def dot2json(path_in_dot):
 		
 	# Align Nodes starting with Node labeled "ENTRY" (unique)
 	for i in nodes:
+		#print (nodes[i]["bb"])
 		if nodes[i]["bb"] == "ENTRY":
 			start  = i
 			ends = nodes[i]["suc"].split(",")
