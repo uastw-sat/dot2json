@@ -96,10 +96,10 @@ colRed  	= { "r" : 205	, "g" : 92	, "b" : 92	}
 colGreen 	= { "r" : 60	, "g" : 179	, "b" : 113	}
 colYellow	= { "r" : 207	, "g" : 181	, "b" : 59	}
 
-constYMult	= 1.5
-constXMult	= 5
-constYDiff 	= 500
-constXMove 	= 500
+constYMult	= 2 # 1.5
+constXMult	= 2 # 5
+constYDiff 	= 100
+constXMove 	= 100
 constRange 	=  20
 constOut	= "./out/default.cfg.html"
 constDep	= "./dep/"

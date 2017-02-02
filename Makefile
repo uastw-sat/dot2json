@@ -100,6 +100,8 @@ release:
 # Remove non required directories
 clean:
 	$(REMOVE) $(EXPORT)
+
+.Phony: default release clean dist_clean
 	$(REMOVE) $(OTHER)
 	
 
