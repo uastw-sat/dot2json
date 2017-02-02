@@ -98,9 +98,9 @@ colYellow	= { "r" : 207	, "g" : 181	, "b" : 59	}
 
 constYMult	= 1.5
 constXMult	= 5
-constYDiff 	= 300
-constXMove 	= 400
-constRange 	=  50
+constYDiff 	= 500
+constXMove 	= 500
+constRange 	=  20
 constOut	= "./out/default.cfg.html"
 constDep	= "./dep/"
 
@@ -141,6 +141,116 @@ def sortChilds(nodes, ends):
 	return result
 
 
+def align4(cur, nodes):
+	if nodes[cur]["done"] == True:
+		return nodes
+	
+	suc = nodes[cur]["suc"].split(',')	# Get Successors
+	pre = nodes[cur]["pre"].split(',')	# Get Predecssors
+	bro = ['']
+	
+	
+	if pre:
+		print pre
+		for i in pre:
+			bro = nodes[i]["suc"].split(',')
+	
+	print "Cur: " + str(cur) + " (" + str(nodes[cur]["bb"]) + ")"
+	print "Suc: " + str(suc)
+	print "Pre: " + str(pre)
+	print "Bro: " + str(bro)
+	
+	px_cur,py_cur = getPosNode(nodes[cur])
+	
+	# Orientate on Predecessors
+	# Which one is closer in X, ignore Y
+	
+	px_pre = []
+	py_pre = []
+	
+	if len(pre) > 1:
+		for i in pre:
+			pritn("Hello")
+			px_pre[i],py_pre[i] = getPosNode(nodes[i])
+			
+			dx_pre[i] 			= calcAbsDiff(px_cur,px_pre[i])  
+	
+	if len(suc) > 1:
+		print suc
+		for i in suc:
+			print i
+			nodes = align(i,nodes)
+			
+	return nodes
+	
+def align3(parent, nodes):
+	nodes[parent]["done"] = True
+	
+	for me in nodes[parent]["suc"].split(','):
+		if not me or nodes[me]["done"] == True:
+			continue
+		
+		others = nodes[parent]["suc"].split(',')
+		
+		xpos1,ypos1 = getPosNode(nodes[parent])
+		xpos2,ypos2 = getPosNode(nodes[me])
+		
+		diff_rel_x = calcRelDiff(xpos1,xpos2)
+		diff_rel_y = calcRelDiff(ypos1,ypos2)
+		
+		#print (("Name:  " + str(nodes[parent]["bb"])))
+		#print (("pre_X: " + str(nodes[parent]["x"])))
+		#print (("pre_Y: " + str(nodes[parent]["y"]) +"\n"))
+		#print (("Name:  " + str(nodes[me]["bb"])))
+		#print (("suc_X: " + str(nodes[me]["x"])))
+		#print (("suc_Y: " + str(nodes[me]["y"])))
+		print (("\n"+ str(nodes[parent]["bb"]) + " --> " +str(nodes[me]["bb"])))
+		print (("Old:"))
+		print str(diff_rel_x)
+		print str(diff_rel_y)
+		
+		x_move = 0
+		
+		if diff_rel_x > 0 and diff_rel_x < constXMove:
+			x_move = xpos1 - diff_rel_x
+			xpos2 -= x_move
+		elif diff_rel_x < 0 and diff_rel_x < -constXMove:
+			x_move = xpos1 + diff_rel_x
+			xpos2 -= x_move
+		#elif diff_rel_x < -constXMove:
+		#	x_move = posx1 + diff_rel_x
+		#	xpos2 -= x_move
+		#elif diff_rel_x > constXMove:
+			
+		
+		move_y = constYDiff - diff_rel_y
+		ypos2 -= move_y
+		
+		
+		setPosNode(nodes[me],xpos2, ypos2)
+		
+		
+		xpos1,ypos1 = getPosNode(nodes[parent])
+		xpos2,ypos2 = getPosNode(nodes[me])
+		
+		diff_rel_x = calcRelDiff(xpos1,xpos2)
+		diff_rel_y = calcRelDiff(ypos1,ypos2)
+		
+		print (("\nNew:"))
+		print str(diff_rel_x)
+		print str(diff_rel_y)
+		
+		for oth in others:
+			if oth <> me:
+				xpos3,ypos3 = getPosNode(nodes[oth])
+				setPosNode(nodes[oth],xpos3-x_move,ypos3 - move_y)
+				
+		nodes = align(me, nodes);
+		
+	return nodes
+
+
+
 ### Recursive Function for forward aligment(x/y) of nodes
 def align(start, ends, nodes, yoff):
 	
@@ -164,16 +274,18 @@ def align(start, ends, nodes, yoff):
 		#print (("\t" + start + "\t(" 	+ '% 6d' % xpos1 + "," 	+ '% 6d' % ypos1 			+ ")"))
 		#print (("\t" + i + "\t(" 		+ '% 6d' % xpos2 + "," 	+ '% 6d' % ypos2 			+ ")"))
 		#print (("\tDiff:\t(" 			+ '% 6d' % diff_abs_x 	+ "," + '% 6d' % diff_rel_y + ")"))
-		print (("pre_X: " + str(nodes[start]["x"])))
-		print (("pre_Y: " + str(nodes[start]["y"])))
-		print (("pre_H: " + str(nodes[start]["height"])))
-		print (("pre_W: " + str(nodes[start]["width"] +"\n")))
-		print (("suc_X: " + str(nodes[i]["x"])))
-		print (("suc_Y: " + str(nodes[i]["y"])))
-		print (("suc_H: " + str(nodes[i]["height"])))
-		print (("suc_W: " + str(nodes[i]["width"])))
-		print ("\n")
-		print ("\n")
+		#print (("Name:  " + str(nodes[start]["bb"])))
+		#print (("pre_X: " + str(nodes[start]["x"])))
+		#print (("pre_Y: " + str(nodes[start]["y"])))
+		#print (("pre_H: " + str(nodes[start]["height"])))
+		#print (("pre_W: " + str(nodes[start]["width"] +"\n")))
+		#print (("Name:  " + str(nodes[i]["bb"])))
+		#print (("suc_X: " + str(nodes[i]["x"])))
+		#print (("suc_Y: " + str(nodes[i]["y"])))
+		#print (("suc_H: " + str(nodes[i]["height"])))
+		#print (("suc_W: " + str(nodes[i]["width"])))
+		#print ("\n")
+		#print ("\n")
 		# Adapt x position if diff between nodes to short
 		if diff_abs_x < constXMove:
 			xpos2 = xpos1
@@ -182,7 +294,7 @@ def align(start, ends, nodes, yoff):
 		ypos2 -= yoff
 		diff_rel_y = calcRelDiff(ypos1,ypos2)
 
-
+	
 
 
 		if diff_rel_y > constYDiff:
@@ -221,6 +333,7 @@ def align(start, ends, nodes, yoff):
 		if nodes[tempA]["suc"] != "":
 			tempB = nodes[tempA]["suc"].split(",")
 			nodes=align(tempA, tempB, nodes,yoff)
+		
 		
 	return nodes
 	
@@ -324,8 +437,8 @@ def dot2json(path_in_dot):
 			nodedata["id"] = name
 			ret = nodedata["pos"].find(",")
 			if ret > -1:
-				nodedata["x"] = float(nodedata["pos"][:ret])# 	* constXMult
-				nodedata["y"] = float(nodedata["pos"][ret+1:])# 	* constYMult
+				nodedata["x"] = float(nodedata["pos"][:ret]) 	* constXMult
+				nodedata["y"] = float(nodedata["pos"][ret+1:]) 	* constYMult
 			else:
 				nodedata["x"] = 0
 				nodedata["y"] = 0
@@ -347,16 +460,16 @@ def dot2json(path_in_dot):
 			head = temp[:ret]
 			body = temp[ret+1:]
 			
-			
 			ret  = head.find("\n")
 			if ret == -1:
 				nodedata["bb"] = head
 			else:
 				prev = 0
 				cnt  = 0
+				
+				head += "\n"
 				for ret in re.finditer("\n",head):
-					lab  = head[prev:ret.start()]
-					#print lab
+					lab = head[prev:ret.start()]
 					
 					prev = ret.end()
 					cnt += 1
@@ -394,6 +507,7 @@ def dot2json(path_in_dot):
 									
 									nodedata["src"] += str(num) + ":" + temp
 								
+								nodedata["src"] = nodedata["src"].replace('"','\\"')
 								nodedata["src"] = nodedata["src"].replace("&","&gt;")
 								nodedata["src"] = nodedata["src"].replace("<","&lt;")
 								nodedata["src"] = nodedata["src"].replace(">","&gt;")
@@ -407,8 +521,8 @@ def dot2json(path_in_dot):
 								pass
 							else:
 								print ("More than one match:" + matching)
-					else:
-						print ( "More information in header than parsed")
+					#else:
+					#	print ( "More information in header than parsed")
 				
 				temp = ""
 				prev = 0
