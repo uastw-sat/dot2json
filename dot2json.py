@@ -91,12 +91,12 @@ src_list = []
 
 
 ### "constant" settings not modifyable by commandline
-colBlue 	= { "r" : 30	, "g" : 144	, "b" : 255	}
-colRed  	= { "r" : 205	, "g" : 92	, "b" : 92	}
+colBlue 	= { "r" : 50	, "g" : 150	, "b" : 255	} #dodgerblue
+colRed  	= { "r" : 255	, "g" : 30	, "b" : 30	}
 colGreen 	= { "r" : 60	, "g" : 179	, "b" : 113	}
 colYellow	= { "r" : 207	, "g" : 181	, "b" : 59	}
 
-constYMult	= 2 # 1.5
+constYMult	= 1 # 1.5
 constXMult	= 2 # 5
 constYDiff 	= 100
 constXMove 	= 100
@@ -541,9 +541,9 @@ def dot2json(path_in_dot):
 			#	nodedata["bb"] = nodedata["label"] 
 				
 			if nodedata["wet"] and nodedata["wst"]:
-				nodedata["color"] = colYellow
-			elif nodedata["wet"]:
 				nodedata["color"] = colRed
+			elif nodedata["wet"]:
+				nodedata["color"] = colYellow
 			elif nodedata["wst"]:
 				nodedata["color"] = colBlue
 			else:

@@ -30,6 +30,8 @@ int main(void)
 	    PORT1->OUT = 0x0; // write 0 to P1.1 -> LED1 OFF
 
         PID_opt();
+        
+        PID_opt2();
 
 
 		// exit condition (should not reachable but is necessary for WCET evaluation)
