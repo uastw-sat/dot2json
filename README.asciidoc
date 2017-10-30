@@ -9,7 +9,7 @@ dot2json
 :toc:
 :footer:
 :data-uri:
-:date: 
+:date: 30.10.2017
 :revision: 
 :lang: en
 :encoding: utf-8
@@ -18,7 +18,7 @@ This repository contains a python script (dot2json.py) which can be used to conv
 The main idea is to create call graphs that can be shown and interacted with in a browser environment.
 Primarily motivated was this work due to the limited possibilities in our developed CLOUD IDE to visualize the data gathered.
  +
-For the visualization, a slightly modified version of the JavaScript library linkurious.js was used.
+For the visualization, a slightly modified version of the JavaScript library sigma.js was used.
 Hence, the JSON output of this script is optimized for this library.
 Moreover, only a subset of the DOT keywords is supported by the script.
 
@@ -210,5 +210,3 @@ in the <<fig:GraphLargeExtraSrc,figure below>>.
 [[fig:GraphLargeExtraSrc]]
 image:img/GraphLargeExtraSrc.png[CFG-Graph Node Information Expanded
 + Source Code]
-
-

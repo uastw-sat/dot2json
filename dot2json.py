@@ -613,48 +613,16 @@ def dot2json(path_in_dot):
 	# Write Data
 	dat_json = "{"
 	
-	#Nodes
-	dat_json += "\"nodes\":[\n"
-	b = 0
-	for i in nodes:
-		node = nodes[i]
-		
-		# Omit empty nodes
-		if node["suc"] == "" and node["pre"] == "":
-			continue
-			
-		if b != 0: 	# Add ',' if not the first element
-			dat_json += ","
-		
-		b += 1 		# Increment Count
-	
-		dat_json += "\t{\n"
-		dat_json += "\t\t\"id\":\"" 		+ i 						+ "\",\n" 
-		dat_json += "\t\t\"label\":\"" 		+ node["bb"] 			+ "\",\n"
-		dat_json += "\t\t\"ET\":\"" 		+ node["et"] 			+ "\",\n"
-		dat_json += "\t\t\"ST\":\"" 		+ node["st"] 			+ "\",\n"
-		dat_json += "\t\t\"WET\":\"" 		+ str(node["wet"]) 		+ "\",\n"
-		dat_json += "\t\t\"WST\":\"" 		+ str(node["wst"]) 		+ "\",\n"
-		dat_json += "\t\t\"Detail\":\"" 	+ node["Detail"] 		+ "\",\n"
-		dat_json += "\t\t\"Code\":\"" 		+ node["code"] 			+ "\",\n"
-		dat_json += "\t\t\"Src\":\"" 		+ node["src"] 			+ "\",\n"
-		dat_json += "\t\t\"x\":" 			+ str(0 - node["x"]) 	+ ",\n"
-		dat_json += "\t\t\"y\":" 			+ str(0 - node["y"]) 	+ ",\n"
-		dat_json += "\t\t\"color\": \"rgb("	+ str(node["color"]["r"]) + "," \
-											+ str(node["color"]["g"]) + "," \
-											+ str(node["color"]["b"]) + ")\"\n"
-		dat_json += "\t}"
-		
 	# Edges
-	dat_json += "\t],\n\"edges\":[\n"
+	dat_json += "\"edges\":[\n\t"
 	b = 0
 	for i in edges:
 		if b != 0:
 			dat_json += ","
 		
 		b += 1
-		dat_json += "\t{\n"
-		dat_json += "\t\t\"id\":\"" 		+ str(b) 				+ "\",\n"
+		dat_json += "{"
+		dat_json += "\t\"id\":\"" 		+ str(b) 				+ "\",\n"
 		dat_json += "\t\t\"source\":\"" 	+ edges[i]["source"] 	+ "\",\n" 
 		dat_json += "\t\t\"target\":\"" 	+ edges[i]["target"] 	+ "\",\n"
 		dat_json += "\t\t\"type\":\"" 		+ edges[i]["line"] 		+ "\",\n"
@@ -678,8 +646,43 @@ def dot2json(path_in_dot):
 			#dat_json += "\"" + edges[i]["type"] + "\"],"
 		
 		#dat_json += "\n"
+		
+	dat_json += "],\n"
 	
-	dat_json += "\n]}"
+	#Nodes
+	dat_json += "\"nodes\":[\n\t"
+	b = 0
+	for i in nodes:
+		node = nodes[i]
+		
+		# Omit empty nodes
+		if node["suc"] == "" and node["pre"] == "":
+			continue
+			
+		if b != 0: 	# Add ',' if not the first element
+			dat_json += ","
+		
+		b += 1 		# Increment Count
+	
+		dat_json += "{"
+		dat_json += "\t\"id\":\"" 		+ i 						+ "\",\n" 
+		dat_json += "\t\t\"label\":\"" 		+ node["bb"] 				+ "\",\n"
+		dat_json += "\t\t\"size\":" 		+ str(10)					+ ",\n"
+		dat_json += "\t\t\"ET\":\"" 		+ node["et"] 			+ "\",\n"
+		dat_json += "\t\t\"ST\":\"" 		+ node["st"] 			+ "\",\n"
+		dat_json += "\t\t\"WET\":\"" 		+ str(node["wet"]) 		+ "\",\n"
+		dat_json += "\t\t\"WST\":\"" 		+ str(node["wst"]) 		+ "\",\n"
+		dat_json += "\t\t\"Detail\":\"" 	+ node["Detail"] 		+ "\",\n"
+		dat_json += "\t\t\"Code\":\"" 		+ node["code"] 			+ "\",\n"
+		dat_json += "\t\t\"Src\":\"" 		+ node["src"] 			+ "\",\n"
+		dat_json += "\t\t\"x\":" 			+ str(0 - node["x"]) 	+ ",\n"
+		dat_json += "\t\t\"y\":" 			+ str(0 - node["y"]) 	+ ",\n"
+		dat_json += "\t\t\"color\": \"rgb("	+ str(node["color"]["r"]) + "," \
+											+ str(node["color"]["g"]) + "," \
+											+ str(node["color"]["b"]) + ")\"\n"
+		dat_json += "\t}"
+	
+	dat_json += "]}"
 	
 	return dat_json
 
@@ -916,6 +919,3 @@ if __name__ == "__main__":
 	
 	# Create HTML export using template
 	createHTML(path_in_dep, path_out_html, gen_json, dat_json, relORabs)
-
-	
-	

@@ -1,3 +1,6 @@
 [submodule "linkurious.js"]
 	path = linkurious.js
 	url = https://github.com/uastw-sat/linkurious.js.git
+[submodule "sigma.js"]
+	path = sigma.js
+	url = git@github.com:fgerstmayer/sigma.js.git
